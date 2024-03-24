@@ -4,7 +4,7 @@ const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx,css}",
   ],
   theme: {
     fontSize: {
@@ -88,9 +88,10 @@ const config: Config = {
     },
     extend: {
       colors: {
-        "red-1": "#FF0000",
-        "grey-1": "#F7F7F7",
-        "grey-2": "#8A8A8A",
+        orange: "#ED772D",
+        grey: "#44403D",
+        nude: "#F5E3CD",
+        brown: "#BB9D7B",
       },
     },
   },

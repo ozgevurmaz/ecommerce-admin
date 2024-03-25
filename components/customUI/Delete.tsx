@@ -33,8 +33,8 @@ const Delete: React.FC<DeleteProps> = ({ id }) => {
       const res = await fetch(`/api/collections/${id}`, { method: "DELETE" });
       if (res.ok) {
         setIsLoading(false);
-        window.location.reload();
         toast.success("Deleted successfully");
+        window.location.href = "/collections";
         router.push("/api/collections")
       }
     } catch (error) {

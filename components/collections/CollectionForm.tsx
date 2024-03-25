@@ -26,7 +26,7 @@ import Delete from "../customUI/Delete";
 
 const formSchema = z.object({
   title: z.string().min(2).max(50),
-  description: z.string().min(2).max(500).trim(),
+  description: z.string().max(500).trim(),
   image: z.string(),
 });
 interface CollectionDataProps {
@@ -48,6 +48,16 @@ const CollectionForm: React.FC<CollectionDataProps> = ({ initialData }) => {
         },
   });
 
+  const handleKeyPress = (
+    e:
+      | React.KeyboardEvent<HTMLInputElement>
+      | React.KeyboardEvent<HTMLTextAreaElement>
+  ) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+    }
+  };
+  
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setIsLoading(true);
@@ -65,7 +75,6 @@ const CollectionForm: React.FC<CollectionDataProps> = ({ initialData }) => {
         window.location.href = "/collections";
         router.push("/collections");
       }
-
     } catch (err) {
       console.log("[CollectionForm]", err);
       toast.error("Something went wrong");

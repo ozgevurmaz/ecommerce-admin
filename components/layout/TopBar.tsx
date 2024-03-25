@@ -23,7 +23,7 @@ const TopBar = () => {
             href={link.url}
             key={link.label}
             className={`text-body-medium ${
-              pathname === link.url ? "text-orange" : ""
+              pathname === link.url ? "text-nude" : ""
             }`}
           >
             {link.label}

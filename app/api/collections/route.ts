@@ -2,7 +2,7 @@ import { connectToDB } from "@/lib/mongoDB";
 import { auth } from "@clerk/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 
-import Collection  from "@/lib/models/collections";
+import Collection from "@/lib/models/collections";
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -37,9 +37,23 @@ export const POST = async (req: NextRequest) => {
     await newCollection.save();
 
     return NextResponse.json(newCollection, { status: 200 });
-
   } catch (error) {
     console.log("[collection_POST]", error);
     return new NextResponse("internal server error", { status: 500 });
+  }
+};
+
+export const GET = async (req: NextRequest) => {
+
+  try {
+    await connectToDB();
+
+    const collections = await Collection.find().sort({createdAt: "desc"})
+
+    return NextResponse.json(collections, { status: 200 });
+    
+  } catch (error) {
+    console.log("[collection_GET]", error);
+  return new NextResponse("internal server error", { status: 500 });
   }
 };

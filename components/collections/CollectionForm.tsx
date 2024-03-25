@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Separator } from "../ui/separator";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -20,42 +19,53 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "../ui/textarea";
 import ImageUpload from "../customUI/ImageUpload";
-import { useState } from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { Separator } from "../ui/separator";
+import Delete from "../customUI/Delete";
 
 const formSchema = z.object({
   title: z.string().min(2).max(50),
   description: z.string().min(2).max(500).trim(),
   image: z.string(),
 });
-
-const CollectionForm = () => {
+interface CollectionDataProps {
+  initialData?: CollectionType | null;
+}
+const CollectionForm: React.FC<CollectionDataProps> = ({ initialData }) => {
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: "",
-      description: "",
-      image: "",
-    },
+    defaultValues: initialData
+      ? initialData
+      : {
+          title: "",
+          description: "",
+          image: "",
+        },
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setIsLoading(true);
-      const res = await fetch("/api/collections", {
+      const url = initialData
+        ? `/api/collections/${initialData._id}`
+        : "/api/collections";
+      const res = await fetch(url, {
         method: "POST",
         body: JSON.stringify(values),
       });
 
       if (res.ok) {
         setIsLoading(false);
-        toast.success("Collection created");
+        toast.success(`Collection ${initialData ? "updated" : "created."}`);
+        window.location.href = "/collections";
         router.push("/collections");
       }
+
     } catch (err) {
       console.log("[CollectionForm]", err);
       toast.error("Something went wrong");
@@ -64,9 +74,13 @@ const CollectionForm = () => {
 
   return (
     <div className="p-10">
-      <h1 className="text-heading2-bold">Create Collection</h1>
+      <div className="flexStart gap-12">
+        <h2 className="text-heading2-bold">
+          {initialData ? "Edit " : "Create "}Collection
+        </h2>
+        {initialData ? <Delete id={initialData._id} /> : ""}
+      </div>
       <Separator className="my-4 bg-grey mt-4" />
-
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
@@ -127,7 +141,7 @@ const CollectionForm = () => {
             </Button>
           </div>
         </form>
-      </Form>
+      </Form>{" "}
     </div>
   );
 };

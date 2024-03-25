@@ -20,7 +20,7 @@ const LeftSideBar = () => {
             href={link.url}
             key={link.label}
             className={`flexStart gap-4 text-body-medium ${
-              pathname === link.url ? "text-orange" : ""
+              pathname === link.url ? "text-nude" : ""
             }`}
           >
             {link.icon}

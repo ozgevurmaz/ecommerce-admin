@@ -57,7 +57,7 @@ const CollectionForm: React.FC<CollectionDataProps> = ({ initialData }) => {
       e.preventDefault();
     }
   };
-  
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setIsLoading(true);
@@ -150,7 +150,7 @@ const CollectionForm: React.FC<CollectionDataProps> = ({ initialData }) => {
             </Button>
           </div>
         </form>
-      </Form>{" "}
+      </Form>
     </div>
   );
 };

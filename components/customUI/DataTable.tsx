@@ -5,7 +5,7 @@ import {
   flexRender,
   ColumnFiltersState,
   getFilteredRowModel,
-  getCoreRowModel,
+  getCoreRowModel,  getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 
@@ -39,7 +39,7 @@ export function DataTable<TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
     onColumnFiltersChange: setColumnFilters,
-    getFilteredRowModel: getFilteredRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),getPaginationRowModel: getPaginationRowModel(),
     state: { columnFilters },
   });
 
@@ -103,10 +103,26 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flexEnd gap-2 mt-5">
-        <Button className="p-1 border border-grey">Previous</Button>
-        <Button className="p-1 border border-grey">Next</Button>
+      
+      <div className="flexEnd space-x-2 py-4">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          Previous
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          Next
+        </Button>
       </div>
+
     </div>
   );
 }

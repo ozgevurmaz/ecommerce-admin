@@ -99,7 +99,7 @@ const CollectionForm: React.FC<CollectionDataProps> = ({ initialData }) => {
               <FormItem>
                 <FormLabel>Title</FormLabel>
                 <FormControl>
-                  <Input placeholder="Title" {...field} />
+                  <Input placeholder="Title" {...field} onKeyDown={handleKeyPress}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -112,7 +112,7 @@ const CollectionForm: React.FC<CollectionDataProps> = ({ initialData }) => {
               <FormItem>
                 <FormLabel>Description</FormLabel>
                 <FormControl>
-                  <Textarea placeholder="Description" {...field} rows={5} />
+                  <Textarea placeholder="Description" {...field} rows={5} onKeyDown={handleKeyPress} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -134,10 +134,11 @@ const CollectionForm: React.FC<CollectionDataProps> = ({ initialData }) => {
               </FormItem>
             )}
           />
-          <div className="flexStart flex-col gap-3 text-white w-min">
+          <div className="flexStart gap-3 text-white w-min">
             <Button
               type="submit"
               className={`bg-grey ${isLoading ? "disabled" : ""}`}
+              onClick={()=>{}}
             >
               Submit
             </Button>

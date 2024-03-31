@@ -14,7 +14,7 @@ const TopBar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="stinky left-0 top-0 w-full flexBetween bg-brown shadow-xl px-8 py-4 lg:hidden">
+    <div className="fixed left-0 top-0 w-full flexBetween bg-brown shadow-xl px-8 py-4 lg:hidden">
       <Image src="/StylieLogo.png" alt="logo" width={150} height={70} />
 
       <nav className="flex gap-5 max-md:hidden">

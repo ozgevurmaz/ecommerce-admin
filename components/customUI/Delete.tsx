@@ -22,15 +22,16 @@ import router from "next/router";
 
 interface DeleteProps {
   id: string;
+  item?: string;
 }
 
-const Delete: React.FC<DeleteProps> = ({ id }) => {
+const Delete: React.FC<DeleteProps> = ({ id , item}) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const onDelete = async () => {
     try {
       setIsLoading(true);
-      const res = await fetch(`/api/collections/${id}`, { method: "DELETE" });
+      const res = await fetch(`/api/${item}/${id}`, { method: "DELETE" });
       if (res.ok) {
         setIsLoading(false);
         toast.success("Deleted successfully");

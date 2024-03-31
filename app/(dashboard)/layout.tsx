@@ -27,7 +27,7 @@ export default function RootLayout({
           <div className="flex max-lg:flex-col text-gray-1">
             <LeftSideBar />
             <TopBar />
-            <div className="flex-1"> {children}</div>
+            <div className="flex-1 lg:ml-[250px] mt-24 lg:mt-0"> {children}</div>
           </div>
         </body>
       </html>

@@ -23,27 +23,13 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     <div>
       <div className="mb-4 flex flex-wrap item-center gap-4">
         {value.map((url) => (
-          <div
-          key={url}
-            className={`w-[200px] h-[200px] relative ${
-              value.length === 0 ? "hidden" : ""
-            }`}
-          >
+          <div key={url} className={`w-[200px] h-[200px] relative`}>
             <div className="absolute top-0 right-0 bg-red-600 rounded-lg">
-              <Button
-                onClick={() => onRemove(url)}
-                className="p-1 text-white"
-              >
+              <Button onClick={() => onRemove(url)} className="p-1 text-white">
                 <X />
               </Button>
             </div>
-            <Image
-              src={url}
-              alt="collection"
-              className="object-cover"
-              width={200}
-              height={200}
-            />{" "}
+            <Image src={url} alt="collection" className="object-cover" fill />
           </div>
         ))}
       </div>

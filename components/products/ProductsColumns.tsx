@@ -18,19 +18,31 @@ export const columns: ColumnDef<ProductType>[] = [
     ),
   },
   {
+    accessorKey: "collections",
+    header: "Collections",
+    cell: ({ row }) =>
+    row.original.collections
+      .map((col) => (
+        <Link
+          href={`/collections/${col._id}`}
+          className="hover:text-orange mr-1"
+          key={col._id}
+        >
+          {col.title.split(" ")[0]}
+        </Link>
+      )) ,
+  },
+  {
+    accessorKey: "category",
+    header: "Category",
+  },
+  {
     accessorKey: "price",
-    header: "Price ($)",
+    header: "Prices ($)",
   },
   {
     accessorKey: "expense",
-    header: "Expense ($)",
-  },
-  {
-    accessorKey: "collections",
-    header: "Collections",
-    cell: ({ row }) => {
-      row.original.collections.map(collection=>collection.title);
-    },
+    header: "Costs ($)",
   },
   {
     id: "action",

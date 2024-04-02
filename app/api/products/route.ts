@@ -1,4 +1,6 @@
+import Collection from "@/lib/models/collections";
 import Product from "@/lib/models/products";
+
 import { connectToDB } from "@/lib/mongoDB";
 import { auth } from "@clerk/nextjs";
 import { NextRequest, NextResponse } from "next/server";
@@ -32,6 +34,13 @@ export const POST = async (req: NextRequest) => {
       });
     }
 
+    
+    if (collections.length > 3) {
+      return new NextResponse("Too much collection selected", {
+        status: 400,
+      });
+    }
+
     const newProduct = await Product.create({
       title,
       description,
@@ -47,6 +56,16 @@ export const POST = async (req: NextRequest) => {
 
     await newProduct.save();
 
+    if (collections) {
+      for (const collectionId of collections) {
+        const collection = await Collection.findById(collectionId);
+        if (collection) {
+          collection.products.push(newProduct._id);
+          await collection.save();
+        }
+      }
+    }
+
     return NextResponse.json(newProduct, { status: 201 });
   } catch (error) {
     console.log("[products_POST]", error);
@@ -57,7 +76,9 @@ export const POST = async (req: NextRequest) => {
 export const GET = async (req: NextRequest) => {
   try {
     await connectToDB();
-    const products = await Product.find().sort({ createdAt: "desc" });
+    const products = await Product.find()
+      .sort({ createdAt: "desc" })
+      .populate({ path: "collections", model: Collection });
 
     return NextResponse.json(products, { status: 200 });
   } catch (error) {

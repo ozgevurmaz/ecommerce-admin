@@ -43,7 +43,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
     (collection) => !selected.includes(collection)
   );
 
-  console.log(value);
+
 
   return (
     <>

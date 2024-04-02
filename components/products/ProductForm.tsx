@@ -27,10 +27,12 @@ import ImageUpload from "../customUI/ImageUpload";
 
 const formSchema = z.object({
   title: z.string().min(2).max(20),
-  description: z.string().min(2).max(500).trim(),
-  media: z.array(z.string()),
-  category: z.string(),
-  collections: z.array(z.string()),
+  description: z.string().min(2).trim(),
+  media: z.array(z.string()).nonempty({ message: "Media has to be Uploaded" }),
+  category: z.string().min(1, { message: "Category is required" }),
+  collections: z
+    .array(z.string())
+    .max(3, { message: "Must be 3 or fewer collections selected" }),
   tags: z.array(z.string()),
   sizes: z.array(z.string()),
   colors: z.array(z.string()),
@@ -127,9 +129,9 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
     <div className="p-10">
       <div className="flexStart gap-12">
         <h2 className="text-heading2-bold">
-          {initialData ? "Edit " : "Create "}Collection
+          {initialData ? "Edit " : "Create "}Product
         </h2>
-        {initialData ? <Delete id={initialData._id} /> : ""}
+        {initialData ? <Delete id={initialData._id} item="products" /> : ""}
       </div>
       <Separator className="bg-grey mt-4 mb-7" />
       <Form {...form}>
@@ -351,7 +353,10 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
           </div>
 
           <div className="flexStart gap-3 text-white w-min">
-            <Button type="submit" className={`bg-grey ${isLoading ? "disabled" : ""}`}>
+            <Button
+              type="submit"
+              className={`bg-grey ${isLoading ? "disabled" : ""}`}
+            >
               Submit
             </Button>
             <Button

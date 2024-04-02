@@ -14,8 +14,9 @@ import { Separator } from "@/components/ui/separator";
 
 const Products = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
   const router = useRouter();
+
   const getProducts = async () => {
     try {
       const res = await fetch("/api/products", {
@@ -41,7 +42,7 @@ const Products = () => {
         <h2 className="text-heading2-bold">Products</h2>
         <Button
           className="text-white bg-orange"
-          onClick={() => router.push("/collections/new")}
+          onClick={() => router.push("/products/new")}
         >
           <PlusCircle className="mr-2" />
           Create Product

@@ -67,7 +67,7 @@ export const POST = async (
 };
 
 export const DELETE = async (
-  red: NextRequest,
+  req: NextRequest,
   { params }: { params: { collectionId: string } }
 ) => {
   try {

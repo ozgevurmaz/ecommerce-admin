@@ -35,8 +35,8 @@ const Delete: React.FC<DeleteProps> = ({ id , item}) => {
       if (res.ok) {
         setIsLoading(false);
         toast.success("Deleted successfully");
-        window.location.href = "/collections";
-        router.push("/api/collections")
+        window.location.href = `/${item}`;
+        router.push(`/api/${item}`)
       }
     } catch (error) {
       console.log("[Delete]", error);

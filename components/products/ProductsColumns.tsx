@@ -8,7 +8,29 @@ export const columns: ColumnDef<ProductType>[] = [
   {
     accessorKey: "title",
     header: "Title",
-    cell: ({ row }) => <Link href={`/products/${row.original._id}`} className="hover:text-orange">{row.original.title}</Link>,
+    cell: ({ row }) => (
+      <Link
+        href={`/products/${row.original._id}`}
+        className="hover:text-orange"
+      >
+        {row.original.title}
+      </Link>
+    ),
+  },
+  {
+    accessorKey: "price",
+    header: "Price ($)",
+  },
+  {
+    accessorKey: "expense",
+    header: "Expense ($)",
+  },
+  {
+    accessorKey: "collections",
+    header: "Collections",
+    cell: ({ row }) => {
+      row.original.collections.map(collection=>collection.title);
+    },
   },
   {
     id: "action",

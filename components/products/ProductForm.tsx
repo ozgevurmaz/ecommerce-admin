@@ -263,7 +263,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                       }
                     />
                   </FormControl>
-                  <FormMessage className="text-red-1" />
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
@@ -289,7 +289,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                       }
                     />
                   </FormControl>
-                  <FormMessage className="text-red-1" />
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
@@ -317,7 +317,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                         }
                       />
                     </FormControl>
-                    <FormMessage className="text-red-1" />
+                    <FormMessage className="text-red-500" />
                   </FormItem>
                 )}
               />
@@ -344,7 +344,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                       }
                     />
                   </FormControl>
-                  <FormMessage className="text-red-1" />
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />

@@ -87,7 +87,7 @@ const CollectionForm: React.FC<CollectionDataProps> = ({ initialData }) => {
         <h2 className="text-heading2-bold">
           {initialData ? "Edit " : "Create "}Collection
         </h2>
-        {initialData ? <Delete id={initialData._id} /> : ""}
+        {initialData ? <Delete id={initialData._id} item="collections" /> : ""}
       </div>
       <Separator className="my-4 bg-grey mt-4" />
       <Form {...form}>

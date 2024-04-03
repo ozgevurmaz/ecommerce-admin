@@ -22,7 +22,7 @@ import router from "next/router";
 
 interface DeleteProps {
   id: string;
-  item?: string;
+  item: "products" | "collections";
 }
 
 const Delete: React.FC<DeleteProps> = ({ id , item}) => {

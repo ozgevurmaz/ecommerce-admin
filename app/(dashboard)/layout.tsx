@@ -24,7 +24,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <ToastProvider />
-          <div className="flex max-lg:flex-col text-gray-1">
+          <div className="flex max-lg:flex-col">
             <LeftSideBar />
             <TopBar />
             <div className="flex-1 lg:ml-[250px] mt-24 lg:mt-0"> {children}</div>

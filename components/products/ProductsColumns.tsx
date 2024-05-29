@@ -6,6 +6,20 @@ import Link from "next/link";
 
 export const columns: ColumnDef<ProductType>[] = [
   {
+    accessorKey: "media",
+    header: " ",
+    cell: ({ row }) => (
+      <Link href={`/products/${row.original._id}`}>
+        <img
+          src={row.original.media[0]}
+          width={300}
+          height={300}
+          className="w-20 h-20 object-cover"
+        />{" "}
+      </Link>
+    ),
+  },
+  {
     accessorKey: "title",
     header: "Title",
     cell: ({ row }) => (
@@ -21,16 +35,16 @@ export const columns: ColumnDef<ProductType>[] = [
     accessorKey: "collections",
     header: "Collections",
     cell: ({ row }) =>
-    row.original.collections
-      .map((col) => (
-        <Link
-          href={`/collections/${col._id}`}
-          className="hover:text-orange mr-1"
-          key={col._id}
-        >
-          {col.title.split(" ")[0]}
-        </Link>
-      )) ,
+      row.original.collections.map((col) => (
+        <li key={col._id}>
+          <Link
+            href={`/collections/${col._id}`}
+            className="hover:text-orange mr-1"
+          >
+            {col.title}
+          </Link>
+        </li>
+      )),
   },
   {
     accessorKey: "category",

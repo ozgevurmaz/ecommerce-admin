@@ -24,6 +24,7 @@ import MultiText from "../customUI/MultiText";
 import MultiSelect from "../customUI/MultiSelect";
 import Loader from "../customUI/Loader";
 import ImageUpload from "../customUI/ImageUpload";
+import { Table } from "../ui/table";
 
 const formSchema = z.object({
   title: z.string().min(2).max(20),
@@ -134,64 +135,74 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
         {initialData ? <Delete id={initialData._id} item="products" /> : ""}
       </div>
       <Separator className="bg-grey mt-4 mb-7" />
+
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <FormField
-            control={form.control}
-            name="title"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Title</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Title"
-                    {...field}
-                    onKeyDown={handleKeyPress}
-                  />
-                </FormControl>
-                <FormMessage className="text-red-500" />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="description"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Description</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="Description"
-                    {...field}
-                    rows={5}
-                    onKeyDown={handleKeyPress}
-                  />
-                </FormControl>
-                <FormMessage className="text-red-500" />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="media"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Image</FormLabel>
-                <FormControl>
-                  <ImageUpload
-                    value={field.value}
-                    onChange={(url) => field.onChange([...field.value, url])}
-                    onRemove={(url) =>
-                      field.onChange([
-                        ...field.value.filter((image) => image !== url),
-                      ])
-                    }
-                  />
-                </FormControl>
-                <FormMessage className="text-red-500" />
-              </FormItem>
-            )}
-          />
+          <div className="flexAround gap-2">
+            <div className="w-[60%]">
+              <FormField
+                control={form.control}
+                name="title"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Title</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Title"
+                        {...field}
+                        onKeyDown={handleKeyPress}
+                      />
+                    </FormControl>
+                    <FormMessage className="text-red-500" />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="description"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Description</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="Description"
+                        {...field}
+                        rows={5}
+                        onKeyDown={handleKeyPress}
+                      />
+                    </FormControl>
+                    <FormMessage className="text-red-500" />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="w-[30%]">
+              <FormField
+                control={form.control}
+                name="media"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Image</FormLabel>
+                    <FormControl>
+                      <ImageUpload
+                        value={field.value}
+                        onChange={(url) =>
+                          field.onChange([...field.value, url])
+                        }
+                        onRemove={(url) =>
+                          field.onChange([
+                            ...field.value.filter((image) => image !== url),
+                          ])
+                        }
+                      />
+                    </FormControl>
+                    <FormMessage className="text-red-500" />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
 
           <div className="md:grid md:grid-cols-3 gap-6">
             <FormField
@@ -212,6 +223,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="expense"
@@ -230,6 +242,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="category"
@@ -247,6 +260,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="tags"
@@ -265,10 +279,12 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                       }
                     />
                   </FormControl>
+
                   <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="colors"
@@ -319,11 +335,13 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                         }
                       />
                     </FormControl>
+
                     <FormMessage className="text-red-500" />
                   </FormItem>
                 )}
               />
             )}
+
             <FormField
               control={form.control}
               name="sizes"
@@ -346,6 +364,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                       }
                     />
                   </FormControl>
+
                   <FormMessage className="text-red-500" />
                 </FormItem>
               )}
@@ -359,6 +378,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
             >
               Submit
             </Button>
+
             <Button
               type="button"
               onClick={() => router.push("/products")}

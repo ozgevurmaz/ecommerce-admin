@@ -17,4 +17,5 @@ type ProductType = {
   colors: [string];
   price: number;
   expense: number;
+  stock: [string];
 };

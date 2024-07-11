@@ -28,14 +28,18 @@ const CollectionDetails = ({
     }
   };
 
+
   useEffect(() => {
     getCollectionDetails();
+
   }, []);
 
   return isLoading ? (
     <Loader />
   ) : (
-    <CollectionForm initialData={collectionDetails} />
+    <div>
+      <CollectionForm initialData={collectionDetails} />
+    </div>
   );
 };
 

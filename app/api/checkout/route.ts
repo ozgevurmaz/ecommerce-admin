@@ -19,9 +19,9 @@ export async function OPTIONS() {
 export async function POST(req: NextRequest) {
   try {
     const { cartItems, customer } = await req.json();
-
+ 
     if (!cartItems || !customer) {
-      return new NextResponse("Not enough information to checkout", {
+      return new NextResponse("Not enough data to checkout", {
         status: 400,
       });
     }
@@ -33,24 +33,23 @@ export async function POST(req: NextRequest) {
         allowed_countries: ["DE", "FR"],
       },
       shipping_options: [
-        { shipping_rate: "shr_1PYoM9LVCXGlurQzS5udxQ3R" },
-        { shipping_rate: "shr_1PYoMZLVCXGlurQz8XRZhFgJ" },
         { shipping_rate: "shr_1PYoMlLVCXGlurQzrhPxy05O" },
+        { shipping_rate: "shr_1PYoMZLVCXGlurQz8XRZhFgJ" },
       ],
-      line_items: cartItems.map((item: any) => ({
+      line_items: cartItems.map((cartItem: any) => ({
         price_data: {
           currency: "eur",
           product_data: {
-            name: item.item.title,
+            name: cartItem.item.title,
             metadata: {
-              productId: item.item.id,
-              size: item.item.size,
-              color: item.item.color,
+              productId: cartItem.item.id,
+              size: cartItem.item.size,
+              color: cartItem.item.color,
             },
           },
-          unit_amount: item.item.price * 100,
+          unit_amount: Math.round(cartItem.item.price*100),
         },
-        quantity: item.quantity,
+        quantity: cartItem.quantity,
       })),
       client_reference_id: customer.clerkId,
       success_url: `${process.env.ECOMMERCE_STORE}/payment_success`,

@@ -103,6 +103,12 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
   };
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    if (values.colors.length === 0) {
+      values.colors = ["std"];
+    }
+    if (values.sizes.length === 0) {
+      values.sizes = ["std"];
+    }
     try {
       setIsLoading(true);
       const url = initialData

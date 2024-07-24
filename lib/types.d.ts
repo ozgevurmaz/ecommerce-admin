@@ -29,9 +29,15 @@ type OrderType = {
   createdAt: string;
 }
 
-type OrderItemType ={
+type OrderItemType = {
   product: ProductType;
   color: string;
   size: string;
   quantity: number;
+}
+
+type CustomerType = {
+  clerkId: string;
+  name: string;
+  email: string;
 }

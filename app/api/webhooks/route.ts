@@ -13,9 +13,9 @@ export const config = {
     bodyParser: false, 
   },
 };
-console.log("Hi")
+
 export const POST = async (req: NextRequest) => {
-  console.log("Hiiii")
+
   try {
     const rawBody = await req.text();
     const signature = req.headers.get("Stripe-Signature") as string;
@@ -55,25 +55,25 @@ export const POST = async (req: NextRequest) => {
 
       const orderItems = lineItem?.map((item: any) => {
         return {
-          product: item.price.metadata.productId,
-          color: item.price.metadata.color || "N/A",
-          size: item.price.metadata.size || "N/A",
+          product: item.price.product.metadata.productId,
+          color: item.price.product.metadata.color ,
+          size: item.price.product.metadata.size ,
           quantity: item.quantity,
         };
       });
 
       await connectToDB();
-      console.log("DB connected")
 
       const newOrder = new Order({
         customerClerkId: customerInfo.clerkId,
         products: orderItems,
         shippingAddress,
+        shippingRate: session?.shipping_cost?.shipping_rate,
         totalAmount: session.amount_total ? session.amount_total / 100 : 0,
       });
 
       await newOrder.save();
-console.log("Order saved")
+
       let customer = await Customer.findOne({ clerkId: customerInfo.clerkId });
 
       if (customer) {
@@ -85,7 +85,6 @@ console.log("Order saved")
         });
       }
       await customer.save();
-      console.log("Customer saved")
     }
     
     return new NextResponse("Order created successfully", {

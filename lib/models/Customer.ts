@@ -19,7 +19,6 @@ const customerSchema = new mongoose.Schema({
   updatedAt: {
     type: Date,
     default: Date.now,
-    onUpdate: Date.now,
   },
 });
 

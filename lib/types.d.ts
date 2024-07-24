@@ -5,6 +5,7 @@ type CollectionType = {
   image: string;
   products: ProductType[];
 };
+
 type ProductType = {
   _id: string;
   title: string;
@@ -19,3 +20,18 @@ type ProductType = {
   expense: number;
   stock: [string];
 };
+
+type OrderType = {
+  _id: string;
+  customer: string;
+  products: number;
+  totalAmount: number;
+  createdAt: string;
+}
+
+type OrderItemType ={
+  product: ProductType;
+  color: string;
+  size: string;
+  quantity: number;
+}

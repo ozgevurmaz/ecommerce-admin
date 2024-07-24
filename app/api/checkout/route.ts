@@ -33,8 +33,8 @@ export async function POST(req: NextRequest) {
         allowed_countries: ["DE", "FR"],
       },
       shipping_options: [
-        { shipping_rate: "shr_1PYoMlLVCXGlurQzrhPxy05O" },
-        { shipping_rate: "shr_1PYoMZLVCXGlurQz8XRZhFgJ" },
+        { shipping_rate: "shr_1PfJpVLVCXGlurQzxMjOO3xK" },
+        { shipping_rate: "shr_1PfJq0LVCXGlurQzeGx8JkHs" },
       ],
       line_items: cartItems.map((cartItem: any) => ({
         price_data: {
@@ -42,9 +42,9 @@ export async function POST(req: NextRequest) {
           product_data: {
             name: cartItem.item.title,
             metadata: {
-              productId: cartItem.item.id,
-              size: cartItem.item.size,
-              color: cartItem.item.color,
+              productId: cartItem.item._id,
+              size: cartItem.size,
+              color: cartItem.color,
             },
           },
           unit_amount: Math.round(cartItem.item.price*100),

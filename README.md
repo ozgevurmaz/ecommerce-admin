@@ -26,7 +26,7 @@ A comprehensive admin dashboard built with Next.js and TypeScript for managing a
 
 ## Gallery
 
-![App preview](public/app.mp4)
+![App preview](https://youtu.be/2cfezCCdY1A)
 
 ### Medium Screens
 ![Dashboard](public/image4.png)

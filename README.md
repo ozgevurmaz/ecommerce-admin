@@ -1,6 +1,6 @@
 ## Ecommerce Admin Panel
 
-![App Demostration](public/image.png)
+[App Preview Video](https://youtu.be/2cfezCCdY1A)
 
 ## Description
 A comprehensive admin dashboard built with Next.js and TypeScript for managing a clothing store. Sellers can add products and collections, specify product features, and upload images using Cloudinary. The project integrates Stripe for payment processing and Clerk for user authentication.
@@ -26,7 +26,7 @@ A comprehensive admin dashboard built with Next.js and TypeScript for managing a
 
 ## Gallery
 
-![App preview](https://youtu.be/2cfezCCdY1A)
+![App Demostration](public/image.png)
 
 ### Medium Screens
 ![Dashboard](public/image4.png)

@@ -31,7 +31,12 @@ A comprehensive admin dashboard built with Next.js and TypeScript for managing a
 ### Medium Screens
 ![Dashboard](public/image4.png)
 ![Collections](public/image3.png)
+![CreateProduct](public/image5.png)
 ![Dashboard](public/image1.png)
+
+### Small Screens
+![Dashboard and Menu](public/image6.png)
+![Collections](public/image7.png)
 
 ## Installation
 Instructions for setting up the project locally.

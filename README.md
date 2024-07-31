@@ -1,6 +1,5 @@
 ## Ecommerce Admin Panel
-[live demo](https://ecommerce-admin-phi-drab.vercel.app/)
-
+![App Demostration](\public\preview.mp4)
 ## Description
 A comprehensive admin dashboard built with Next.js and TypeScript for managing a clothing store. Sellers can add products and collections, specify product features, and upload images using Cloudinary. The project integrates Stripe for payment processing and Clerk for user authentication.
 
@@ -25,17 +24,17 @@ A comprehensive admin dashboard built with Next.js and TypeScript for managing a
 
 ## Demostration
 
-![DashBoard Page](image.png)
-![Collections Page](image-1.png)
-![Creating New Collections](image-2.png)
-![Editing Collection Details](image-3.png)
-![Products Page](image-4.png)
-![Creating New Product](image-5.png)
-![Uploading Photo](image-6.png)
-![Editing Product Details](image-7.png)
-![Orders Page](image-8.png)
-![Order Details](image-9.png)
-![Customers Page](image-10.png)
+![DashBoard Page](\public\image.png)
+![Collections Page](\public\image-1.png)
+![Creating New Collections](\public\image-2.png)
+![Editing Collection Details](\public\image-3.png)
+![Products Page](\public\image-4.png)
+![Creating New Product](\public\image-5.png)
+![Uploading Photo](\public\image-6.png)
+![Editing Product Details](\public\image-7.png)
+![Orders Page](\public\image-8.png)
+![Order Details](\public\image-9.png)
+![Customers Page](\public\image-10.png)
 
 ## Installation
 Instructions for setting up the project locally.

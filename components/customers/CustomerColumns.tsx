@@ -6,17 +6,11 @@ import Link from "next/link";
 export const columns: ColumnDef<CustomerType>[] = [
   {
     accessorKey: "clerkId",
+    header: "Clerk Id",
+  },
+  {
+    accessorKey: "name",
     header: "Name",
-    cell: ({ row }) => {
-      return (
-        <Link
-          href={`/customers/${row.original.clerkId}`}
-          className="hover:text-red-1"
-        >
-          {row.original.name}
-        </Link>
-      );
-    },
   },
   {
     accessorKey: "email",

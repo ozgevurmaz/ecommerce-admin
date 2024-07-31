@@ -8,10 +8,10 @@ A comprehensive admin dashboard built with Next.js and TypeScript for managing a
 ## Table of Contents
 - [Description](#description)
 - [Features](#features)
+- [Demostration](#demostration)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Technologies](#technologies)
-- [Ongoing Development](#ongoing_development)
 
 ## Features
 
@@ -22,6 +22,20 @@ A comprehensive admin dashboard built with Next.js and TypeScript for managing a
 - **Real-time Updates**: Real-time data updates and notifications.
 - **Product Management**: Sellers can add and manage products and collections.
 - **Image Handling**: Image uploads and management using Cloudinary.
+
+## Demostration
+
+![DashBoard Page](image.png)
+![Collections Page](image-1.png)
+![Creating New Collections](image-2.png)
+![Editing Collection Details](image-3.png)
+![Products Page](image-4.png)
+![Creating New Product](image-5.png)
+![Uploading Photo](image-6.png)
+![Editing Product Details](image-7.png)
+![Orders Page](image-8.png)
+![Order Details](image-9.png)
+![Customers Page](image-10.png)
 
 ## Installation
 Instructions for setting up the project locally.
@@ -57,11 +71,3 @@ npm start
 - **Authentication**: Clerk
 - **Payments**: Stripe
 - **Image Handling**: Cloudinary
-
-## Ongoing Development
-
-This project is ongoing and currently under active development. Here are some features and improvements that are planned:
-
-- **Improved Analytics**: Adding more detailed analytics and reports for sellers.
-- **Enhanced UI/UX**: Continuous improvement of the user interface and user experience.
-- **New Payment Methods**: Integrating additional payment methods alongside Stripe.

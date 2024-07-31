@@ -37,7 +37,7 @@ const Collections = () => {
     <Loader />
   ) : (
     <div className="p-10">
-      <div className="flexBetween">
+      <div className="flexBetween max-md:flex-col">
         <h2 className="text-heading2-bold">Collections</h2>
         <Button
           className="text-white bg-orange"

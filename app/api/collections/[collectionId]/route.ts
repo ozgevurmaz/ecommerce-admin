@@ -11,7 +11,7 @@ export const GET = async (
   try {
     await connectToDB();
 
-    const collection = await Collection.findById(params.collectionId);
+    const collection = await Collection.findById(params.collectionId).populate('products');
 
     if (!collection) {
       return new NextResponse(
@@ -21,9 +21,9 @@ export const GET = async (
     }
 
     return NextResponse.json(collection, { status: 200 });
-  } catch (error) {
-    console.log("[collection_GET]", error);
-    return new NextResponse("internal server error", { status: 500 });
+  } catch (err) {
+    console.log("[collectionId_GET]", err);
+    return new NextResponse("Internal error", { status: 500 });
   }
 };
 
@@ -92,3 +92,5 @@ export const DELETE = async (
     return new NextResponse("internal server error", { status: 500 });
   }
 };
+
+export const dynamic = "force-dynamic";

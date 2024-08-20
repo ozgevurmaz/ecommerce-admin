@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 
 import CollectionForm from "@/components/collections/CollectionForm";
 import Loader from "@/components/customUI/Loader";
+import { DataTable } from "@/components/customUI/DataTable";
+import { columns } from "@/components/collections/productColumns";
 
 const CollectionDetails = ({
   params,
@@ -28,10 +30,8 @@ const CollectionDetails = ({
     }
   };
 
-
   useEffect(() => {
     getCollectionDetails();
-
   }, []);
 
   return isLoading ? (
@@ -39,8 +39,19 @@ const CollectionDetails = ({
   ) : (
     <div>
       <CollectionForm initialData={collectionDetails} />
+      {collectionDetails && (
+        <div className="px-10">
+          <h3 className="text-heading3-bold">Products</h3>
+          <DataTable
+            columns={columns}
+            data={collectionDetails.products}
+            searchKey="title"
+          />
+        </div>
+      )}
     </div>
   );
 };
 
 export default CollectionDetails;
+export const dynamic = "force-dynamic";

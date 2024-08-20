@@ -89,7 +89,7 @@ export const POST = async (
         category,
         collections,
         tags,
-        sizes, 
+        sizes,
         colors,
         price,
         expense,
@@ -124,7 +124,14 @@ export const GET = async (
       );
     }
 
-    return new NextResponse(JSON.stringify(product), { status: 200 });
+    return new NextResponse(JSON.stringify(product), {
+      status: 200,
+      headers: {
+        "Access-Control-Allow-Origin": process.env.ECOMMERCE_STORE_URL || "*",
+        "Access-Control-Allow-Methods": "GET",
+        "Access-Control-Allow-Headers": "Content-Type, Cache-Control",
+      },
+    });
   } catch (error) {
     console.error("[productId_GET]", error);
     return new NextResponse("internal server error", { status: 500 });

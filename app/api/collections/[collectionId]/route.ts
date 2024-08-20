@@ -11,7 +11,9 @@ export const GET = async (
   try {
     await connectToDB();
 
-    const collection = await Collection.findById(params.collectionId).populate('products');
+    const collection = await Collection.findById(params.collectionId).populate(
+      "products"
+    );
 
     if (!collection) {
       return new NextResponse(
@@ -53,7 +55,7 @@ export const POST = async (
     if (!title || !image) {
       return new NextResponse("Title and image are required", { status: 400 });
     }
-
+   
     collection = await Collection.findByIdAndUpdate(
       params.collectionId,
       { title, description, image },

@@ -1,6 +1,10 @@
 ## Ecommerce Admin Panel
 
-[App Preview Video](https://youtu.be/2cfezCCdY1A)
+[visit demo](https://ecommerce-admin-henna-phi.vercel.app/)
+
+> ### Admin Information
+> Email: test@test.com <br/>
+> Password: stylie2024
 
 ## Description
 A comprehensive admin dashboard built with Next.js and TypeScript for managing a clothing store. Sellers can add products and collections, specify product features, and upload images using Cloudinary. The project integrates Stripe for payment processing and Clerk for user authentication.

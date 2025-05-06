@@ -12,9 +12,9 @@ const LeftSideBar = () => {
   const pathname = usePathname();
 
   return (
-    <header className="h-screen fixed left-0 top-0 flexBetween flex-col bg-brown max-lg:hidden shadow-xl gap-16 p-10">
+    <header className="h-screen fixed left-0 top-0 flexBetween flex-col bg-brown max-lg:hidden shadow-xl gap-10 p-10 z-20">
       <Image src="/StylieLogo.png" alt="logo" width={150} height={70} />
-      <nav className="flex flex-col gap-12">
+      <nav className="flex flex-col gap-6 xl:gap-12 ">
         {navLinks.map((link) => (
           <Link
             href={link.url}
@@ -28,11 +28,6 @@ const LeftSideBar = () => {
           </Link>
         ))}
       </nav>
-
-      <div className="flexCenter gap-4 text-body-medium">
-        <UserButton />
-        <p>Edit Profile</p>
-      </div>
     </header>
   );
 };

@@ -41,3 +41,12 @@ type CustomerType = {
   name: string;
   email: string;
 }
+
+type ProductSalesType = {
+  id: string;
+  title: string;
+  sales: number;
+  quantity: number;
+  category: string;
+  image: string[];
+};

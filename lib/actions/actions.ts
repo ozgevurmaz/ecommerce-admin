@@ -1,5 +1,6 @@
 import Customer from "../models/Customer";
 import Order from "../models/Order";
+import Product from "../models/products"; 
 import { connectToDB } from "../mongoDB";
 
 export const getTotalSales = async () => {
@@ -35,4 +36,49 @@ export const getSalesPerMonth = async () => {
     return { name: month, sales: salesPerMonth[i] || 0 };
   });
   return graphData;
+};
+
+export const getTopProducts = async () => {
+  await connectToDB();
+
+  const orders = await Order.find();
+
+  const productSales: Record<string, ProductSalesType> = {};
+  const productIdSet = new Set<string>();
+
+  orders.forEach(order => {
+    order.products.forEach((item : OrderItemType )=> {
+      const id = item.product.toString();
+      productIdSet.add(id);
+    });
+  });
+
+  const productList = await Product.find({ _id: { $in: [...productIdSet] } });
+
+  orders.forEach(order => {
+    order.products.forEach((item : OrderItemType ) => {
+      const id = item.product.toString();
+      const product = productList.find(p => p._id.toString() === id);
+      if (!product) return;
+
+      if (!productSales[id]) {
+        productSales[id] = {
+          id,
+          title: product.title,
+          sales: 0,
+          quantity: 0,
+          category: product.category,
+          image: product.media,
+        };
+      }
+
+      const itemPrice = product.price || 0;
+      productSales[id].sales += itemPrice * item.quantity;
+      productSales[id].quantity += item.quantity;
+    });
+  });
+
+  const productsArray = Object.values(productSales);
+
+  return productsArray.sort((a, b) => b.sales - a.sales).slice(0, 5);
 };

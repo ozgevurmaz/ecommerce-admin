@@ -42,7 +42,7 @@ import toast from "react-hot-toast";
 import Loader from "@/components/customUI/Loader";
 import ImageUpload from "@/components/customUI/ImageUpload";
 import Delete from "@/components/customUI/Delete";
-import { fetchCategories } from "@/lib/actions/fetchers";
+import { fetchData } from "@/lib/actions/fetchers";
 import Image from "next/image";
 
 
@@ -72,7 +72,7 @@ const Categories = () => {
 
     // Fetch categories
     const getCategories = async () => {
-        const data = await fetchCategories();
+        const data = await fetchData("categories");
         setCategories(data)
         setIsLoading(false);
     };

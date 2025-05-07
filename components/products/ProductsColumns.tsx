@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Badge } from "../ui/badge";
 import { Edit } from "lucide-react";
 import { Button } from "../ui/button";
+import Image from "next/image";
 
 export const columns: ColumnDef<ProductType>[] = [
   {
@@ -15,7 +16,9 @@ export const columns: ColumnDef<ProductType>[] = [
       <Link href={`/products/${row.original._id}`}>
         <div className="relative w-20 h-20 rounded-md overflow-hidden">
           {row.original.media && row.original.media.length > 0 ? (
-            <img
+            <Image
+              width={200}
+              height={200}
               src={row.original.media[0]}
               alt={row.original.title}
               className="w-full h-full object-cover"
@@ -47,8 +50,8 @@ export const columns: ColumnDef<ProductType>[] = [
     cell: ({ row }) => (
       <div className="flex flex-col gap-1 max-w-xs">
         {row.original.collections.map((col) => (
-          <Badge 
-            key={col._id} 
+          <Badge
+            key={col._id}
             variant="outline"
             className="hover:bg-orange/10 hover:text-orange transition-colors max-w-max"
           >
@@ -79,8 +82,8 @@ export const columns: ColumnDef<ProductType>[] = [
     header: "Price (€)",
     cell: ({ row }) => (
       <span className="font-medium">
-        {typeof row.original.price === 'number' 
-          ? `€${row.original.price.toFixed(2)}` 
+        {typeof row.original.price === 'number'
+          ? `€${row.original.price.toFixed(2)}`
           : row.original.price}
       </span>
     ),
@@ -90,8 +93,8 @@ export const columns: ColumnDef<ProductType>[] = [
     header: "Cost (€)",
     cell: ({ row }) => (
       <span className="text-gray-600">
-        {typeof row.original.expense === 'number' 
-          ? `€${row.original.expense.toFixed(2)}` 
+        {typeof row.original.expense === 'number'
+          ? `€${row.original.expense.toFixed(2)}`
           : row.original.expense}
       </span>
     ),

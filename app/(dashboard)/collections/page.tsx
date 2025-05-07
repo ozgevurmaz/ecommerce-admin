@@ -11,22 +11,16 @@ import { DataTable } from "@/components/customUI/DataTable";
 import Loader from "@/components/customUI/Loader";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { fetchData } from "@/lib/actions/fetchers";
 
 const Collections = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [collections, setCollections] = useState([]);
   const router = useRouter();
-  const getCollections = async () => {
-    try {
-      const res = await fetch("/api/collections", {
-        method: "GET",
-      });
-      const data = await res.json();
+  const getCollections = async () => { 
+      const data = await fetchData("collections")
       setCollections(data);
       setIsLoading(false);
-    } catch (error) {
-      console.log("[collections_GET]", error);
-    }
   };
 
   useEffect(() => {

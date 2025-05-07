@@ -3,6 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import Delete from "../customUI/Delete";
 import Link from "next/link";
+import Image from "next/image";
 
 export const columns: ColumnDef<ProductType>[] = [
   {
@@ -10,10 +11,11 @@ export const columns: ColumnDef<ProductType>[] = [
     header: " ",
     cell: ({ row }) => (
       <Link href={`/products/${row.original._id}`} key={row.original._id}>
-        <img
+        <Image
           src={row.original.media[0]}
           width={300}
           height={300}
+          alt={row.original.title}
           className="w-20 h-20 object-cover"
         />{" "}
       </Link>
@@ -37,10 +39,10 @@ export const columns: ColumnDef<ProductType>[] = [
   },
   {
     accessorKey: "price",
-    header: "Prices ($)",
+    header: "Prices (€)",
   },
   {
     accessorKey: "expense",
-    header: "Costs ($)",
+    header: "Costs (€)",
   },
 ];

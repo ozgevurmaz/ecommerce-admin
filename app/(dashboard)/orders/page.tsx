@@ -4,26 +4,21 @@ import { DataTable } from "@/components/customUI/DataTable";
 import Loader from "@/components/customUI/Loader";
 import { columns } from "@/components/orders/OrdersColumns";
 import { Separator } from "@/components/ui/separator";
+import { fetchData } from "@/lib/actions/fetchers";
 import { useEffect, useState } from "react";
 
 const Orders = () => {
   const [orderDetails, setOrderDetails] = useState<OrderType[]>([]);
   const [loading, setLoading] = useState(false);
-  
-  const getOrders = async () => {
-    try {
-      setLoading(true);
-      const res = await fetch("/api/orders", { method: "GET" });
-      const data = await res.json();
-      setOrderDetails(data);
-      setLoading(false);
-    } catch (err) {
-      console.log("[ORDER_GET]", err);
-    }
-  };
 
   useEffect(() => {
-    getOrders();
+    const getOrders = async () => {
+      const data = await fetchData("orders");
+      setOrderDetails(data)
+      setLoading(false)
+    };
+
+    getOrders()
   }, []);
 
   return loading ? (

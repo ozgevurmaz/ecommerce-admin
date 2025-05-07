@@ -6,6 +6,7 @@ import CollectionForm from "@/components/collections/CollectionForm";
 import Loader from "@/components/customUI/Loader";
 import { DataTable } from "@/components/customUI/DataTable";
 import { columns } from "@/components/collections/productColumns";
+import { fetchData } from "@/lib/actions/fetchers";
 
 const CollectionDetails = ({
   params,
@@ -17,17 +18,9 @@ const CollectionDetails = ({
     useState<CollectionType | null>(null);
 
   const getCollectionDetails = async () => {
-    try {
-      const res = await fetch(`/api/collections/${params.collectionId}`, {
-        method: "GET",
-      });
-
-      const data = await res.json();
-      setCollectionDetails(data);
-      setIsLoading(false);
-    } catch (error) {
-      console.log("[collectionId_GET]", error);
-    }
+    const data = await fetchData("collections", params.collectionId)
+    setCollectionDetails(data);
+    setIsLoading(false);
   };
 
   useEffect(() => {

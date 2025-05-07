@@ -2,6 +2,7 @@
 
 import Loader from "@/components/customUI/Loader";
 import ProductForm from "@/components/products/ProductForm";
+import { fetchData } from "@/lib/actions/fetchers";
 import React, { useEffect, useState } from "react";
 
 const ProductDetails = ({ params }: { params: { productId: string } }) => {
@@ -9,24 +10,15 @@ const ProductDetails = ({ params }: { params: { productId: string } }) => {
   const [productDetails, setProductDetails] =
     useState<ProductType | null>(null);
 
-  const getProductDetails = async () => {
-    try {
-      const res = await fetch(`/api/products/${params.productId}`, {
-        method: "GET",
-      });
-
-      const data = await res.json();
+  useEffect(() => {
+    const getProductDetails = async () => {
+      const data = await fetchData("products", params.productId);
       setProductDetails(data);
       setIsLoading(false);
-    } catch (error) {
-      console.log("[productId_GET]", error);
-    }
-  };
+    };
 
-  useEffect(() => {
     getProductDetails();
- 
-  }, []);
+  }, [params.productId]);
 
   return isLoading ? <Loader /> : <ProductForm initialData={productDetails} />;
 };

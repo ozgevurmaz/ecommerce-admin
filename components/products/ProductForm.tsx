@@ -27,6 +27,7 @@ import Loader from "../customUI/Loader";
 import ImageUpload from "../customUI/ImageUpload";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 import React from "react";
+import { fetchData } from "@/lib/actions/fetchers";
 
 export const formSchema = z.object({
   title: z.string().min(2).max(20),
@@ -62,30 +63,15 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
   const [priceValue, setPriceValue] = useState("");
 
   const getCollections = async () => {
-    try {
-      const res = await fetch("/api/collections", {
-        method: "GET",
-      });
-      const data = await res.json();
-      setCollections(data);
-    } catch (err) {
-      console.log("[collections_GET]", err);
-      toast.error("Something went wrong! Please try again.");
-    }
+    const data = await fetchData("collections")
+    setCollections(data);
+    setIsLoading(false)
   };
 
   const getCategories = async () => {
-    try {
-      const res = await fetch("/api/categories", {
-        method: "GET",
-      });
-      const data = await res.json();
-      setCategories(data);
-      setIsLoading(false);
-    } catch (err) {
-      console.log("[categories_GET]", err);
-      toast.error("Something went wrong! Please try again.");
-    }
+    const data = await fetchData("categories")
+    setCategories(data);
+    setIsLoading(false)
   };
 
   useEffect(() => {

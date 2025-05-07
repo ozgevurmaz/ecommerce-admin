@@ -16,6 +16,7 @@ import {
   ArrowUpIcon,
   ArrowDownIcon
 } from "lucide-react";
+import Image from "next/image";
 
 export default async function Dashboard() {
   const totalRevenue = await getTotalSales().then((data) => data.totalRevenue);
@@ -184,7 +185,9 @@ export default async function Dashboard() {
                     <div className="flex items-center">
                       <div className="w-10 h-10 rounded-md bg-gray-200 mr-3 overflow-hidden">
                         {product.image && (
-                          <img
+                          <Image
+                            width={100}
+                            height={100}
                             src={product.image[0]}
                             alt={product.title}
                             className="w-full h-full object-cover"

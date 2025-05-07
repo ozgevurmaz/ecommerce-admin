@@ -1,6 +1,7 @@
 import Customer from "../models/Customer";
 import Order from "../models/Order";
 import Product from "../models/products";
+import Category from "../models/categories";
 import { connectToDB } from "../mongoDB";
 
 export const getTotalSales = async () => {
@@ -42,6 +43,8 @@ export const getTopProducts = async () => {
   await connectToDB();
 
   const orders = await Order.find();
+
+  if (!orders.length) return [];
 
   const productSales: Record<string, ProductSalesType> = {};
   const productIdSet = new Set<string>();

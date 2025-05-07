@@ -43,6 +43,7 @@ import Loader from "@/components/customUI/Loader";
 import ImageUpload from "@/components/customUI/ImageUpload";
 import Delete from "@/components/customUI/Delete";
 import { fetchCategories } from "@/lib/actions/fetchers";
+import Image from "next/image";
 
 
 // New/Edit category form type
@@ -120,7 +121,7 @@ const Categories = () => {
 
             if (!res.ok) {
                 throw new Error("Failed to update category");
-            }   
+            }
 
             await getCategories();
             setShowForm(false);
@@ -381,9 +382,11 @@ const Categories = () => {
                                     <TableCell>
                                         {category.image ? (
                                             <div className="h-10 w-10 rounded-md overflow-hidden border">
-                                                <img
+                                                <Image
                                                     src={category.image}
                                                     alt={category.title}
+                                                    height={100}
+                                                    width={100}
                                                     className="h-full w-full object-cover"
                                                 />
                                             </div>

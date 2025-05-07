@@ -76,22 +76,22 @@ export const columns: ColumnDef<ProductType>[] = [
   },
   {
     accessorKey: "price",
-    header: "Price ($)",
+    header: "Price (€)",
     cell: ({ row }) => (
       <span className="font-medium">
         {typeof row.original.price === 'number' 
-          ? `$${row.original.price.toFixed(2)}` 
+          ? `€${row.original.price.toFixed(2)}` 
           : row.original.price}
       </span>
     ),
   },
   {
     accessorKey: "expense",
-    header: "Cost ($)",
+    header: "Cost (€)",
     cell: ({ row }) => (
       <span className="text-gray-600">
         {typeof row.original.expense === 'number' 
-          ? `$${row.original.expense.toFixed(2)}` 
+          ? `€${row.original.expense.toFixed(2)}` 
           : row.original.expense}
       </span>
     ),

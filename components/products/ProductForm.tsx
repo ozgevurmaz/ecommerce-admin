@@ -281,7 +281,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
       });
     });
     form.setValue("prices", newPrices);
-    toast.success(`Set all variants to $${price.toFixed(2)}`);
+    toast.success(`Set all variants to €${price.toFixed(2)}`);
   };
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -421,7 +421,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
               name="price"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Base Price ($)</FormLabel>
+                  <FormLabel>Base Price (€)</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
@@ -440,7 +440,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
               name="expense"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Expense ($)</FormLabel>
+                  <FormLabel>Expense (€)</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
@@ -629,7 +629,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                 </Button>
                 <div className=" w-[1px] bg-gray-500/40 mx-4" />
                 <div className="flex items-center gap-2">
-                  <div className="font-medium">Set All Prices ($):</div>
+                  <div className="font-medium">Set All Prices (€):</div>
                   <Input
                     type="number"
                     min="0.1"
@@ -726,7 +726,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
 
                         <TableRow className="border-b-2 border-gray-200 h-10">
                           <TableCell className="bg-green-50 font-medium p-1.5">
-                            Price ($)
+                            Price (€)
                           </TableCell>
                           {form.watch("sizes").sort((a, b) => {
                             const numA = parseFloat(a);

@@ -53,7 +53,7 @@ export const getTopProducts = async () => {
     });
   });
 
-  const productList = await Product.find({ _id: { $in: [...productIdSet] } });
+  const productList : ProductType[] = await Product.find({ _id: { $in: [...productIdSet] } }).populate("category");
 
   orders.forEach(order => {
     order.products.forEach((item: OrderItemType) => {
@@ -67,7 +67,7 @@ export const getTopProducts = async () => {
           title: product.title,
           sales: 0,
           quantity: 0,
-          category: product.category,
+          category: product.category?.title || "",
           image: product.media,
         };
       }

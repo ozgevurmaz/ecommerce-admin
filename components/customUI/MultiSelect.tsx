@@ -47,8 +47,8 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 
   return (
     <>
-      <Command className="overflow-visible bg-white">
-        <div className="flex gap-1 flex-wrap border rounded-md">
+      <Command className="overflow-visible">
+        <div className="flex gap-1 flex-wrap border rounded-md bg-white">
           {selected.map((collection) => (
             <Badge key={collection._id}>
               {collection.title}

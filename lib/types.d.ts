@@ -10,15 +10,16 @@ type ProductType = {
   _id: string;
   title: string;
   description: string;
-  media: [string];
-  category: string;
-  collections: [CollectionType];
-  tags: [string];
-  sizes: [string];
-  colors: [string];
-  price: number;
+  media: string[];
+  category: CategoryType | string;
+  collections: CollectionType[];
+  tags: string[];
+  sizes: string[];
+  colors: string[];
   expense: number;
-  stock: [string];
+  price: number;
+  prices: Record<string, number>;
+  stock: Record<string, number>;
 };
 
 type OrderType = {
@@ -49,4 +50,16 @@ type ProductSalesType = {
   quantity: number;
   category: string;
   image: string[];
+};
+
+type CategoryType = {
+  _id: string;
+  title: string;
+  slug: string;
+  description: string;
+  image: string;
+  isActive: boolean;
+  products: string[];
+  createdAt: string;
+  updatedAt: string;
 };

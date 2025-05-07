@@ -3,19 +3,29 @@
 import { ColumnDef } from "@tanstack/react-table";
 import Delete from "../customUI/Delete";
 import Link from "next/link";
+import { Badge } from "../ui/badge";
+import { Edit } from "lucide-react";
+import { Button } from "../ui/button";
 
 export const columns: ColumnDef<ProductType>[] = [
   {
     accessorKey: "media",
-    header: " ",
+    header: "Image",
     cell: ({ row }) => (
       <Link href={`/products/${row.original._id}`}>
-        <img
-          src={row.original.media[0]}
-          width={300}
-          height={300}
-          className="w-20 h-20 object-cover"
-        />{" "}
+        <div className="relative w-20 h-20 rounded-md overflow-hidden">
+          {row.original.media && row.original.media.length > 0 ? (
+            <img
+              src={row.original.media[0]}
+              alt={row.original.title}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500">
+              No image
+            </div>
+          )}
+        </div>
       </Link>
     ),
   },
@@ -25,7 +35,7 @@ export const columns: ColumnDef<ProductType>[] = [
     cell: ({ row }) => (
       <Link
         href={`/products/${row.original._id}`}
-        className="hover:text-orange"
+        className="font-medium hover:text-orange transition-colors"
       >
         {row.original.title}
       </Link>
@@ -34,32 +44,70 @@ export const columns: ColumnDef<ProductType>[] = [
   {
     accessorKey: "collections",
     header: "Collections",
-    cell: ({ row }) =>
-      row.original.collections.map((col) => (
-        <li key={col._id}>
-          <Link
-            href={`/collections/${col._id}`}
-            className="hover:text-orange mr-1"
+    cell: ({ row }) => (
+      <div className="flex flex-col gap-1 max-w-xs">
+        {row.original.collections.map((col) => (
+          <Badge 
+            key={col._id} 
+            variant="outline"
+            className="hover:bg-orange/10 hover:text-orange transition-colors max-w-max"
           >
-            {col.title}
-          </Link>
-        </li>
-      )),
+            <Link href={`/collections/${col._id}`}>
+              {col.title}
+            </Link>
+          </Badge>
+        ))}
+      </div>
+    ),
   },
   {
     accessorKey: "category",
     header: "Category",
+    cell: ({ row }) => {
+      const category = row.original.category;
+      return (
+        <span className="capitalize">
+          {typeof category === "object" && category?.title
+            ? category.title
+            : "Uncategorized"}
+        </span>
+      );
+    },
   },
   {
     accessorKey: "price",
-    header: "Prices ($)",
+    header: "Price ($)",
+    cell: ({ row }) => (
+      <span className="font-medium">
+        {typeof row.original.price === 'number' 
+          ? `$${row.original.price.toFixed(2)}` 
+          : row.original.price}
+      </span>
+    ),
   },
   {
     accessorKey: "expense",
-    header: "Costs ($)",
+    header: "Cost ($)",
+    cell: ({ row }) => (
+      <span className="text-gray-600">
+        {typeof row.original.expense === 'number' 
+          ? `$${row.original.expense.toFixed(2)}` 
+          : row.original.expense}
+      </span>
+    ),
   },
   {
-    id: "action",
-    cell: ({ row }) => <Delete id={row.original._id} item="products" />,
+    id: "actions",
+    header: "Actions",
+    cell: ({ row }) => (
+      <div className="flex items-center gap-2">
+        <Link href={`/products/${row.original._id}`}>
+          <Button variant="ghost" size="icon" className="h-8 w-8">
+            <Edit className="h-4 w-4 text-blue-500" />
+          </Button>
+        </Link>
+        <Delete id={row.original._id} item="products" />
+      </div>
+    ),
   },
 ];

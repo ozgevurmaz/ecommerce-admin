@@ -1,6 +1,6 @@
 import Customer from "../models/Customer";
 import Order from "../models/Order";
-import Product from "../models/products"; 
+import Product from "../models/products";
 import { connectToDB } from "../mongoDB";
 
 export const getTotalSales = async () => {
@@ -47,7 +47,7 @@ export const getTopProducts = async () => {
   const productIdSet = new Set<string>();
 
   orders.forEach(order => {
-    order.products.forEach((item : OrderItemType )=> {
+    order.products.forEach((item: OrderItemType) => {
       const id = item.product.toString();
       productIdSet.add(id);
     });
@@ -56,7 +56,7 @@ export const getTopProducts = async () => {
   const productList = await Product.find({ _id: { $in: [...productIdSet] } });
 
   orders.forEach(order => {
-    order.products.forEach((item : OrderItemType ) => {
+    order.products.forEach((item: OrderItemType) => {
       const id = item.product.toString();
       const product = productList.find(p => p._id.toString() === id);
       if (!product) return;
@@ -82,3 +82,4 @@ export const getTopProducts = async () => {
 
   return productsArray.sort((a, b) => b.sales - a.sales).slice(0, 5);
 };
+

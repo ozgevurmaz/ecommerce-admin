@@ -15,17 +15,17 @@ import {
 import { Button } from "../ui/button";
 import { Trash2 } from "lucide-react";
 import { useState } from "react";
-import { NextResponse } from "next/server";
 import toast from "react-hot-toast";
 import router from "next/router";
 
 
 interface DeleteProps {
   id: string;
-  item: "products" | "collections";
+  item: "products" | "collections" | "categories";
+  showText?: boolean;
 }
 
-const Delete: React.FC<DeleteProps> = ({ id , item}) => {
+const Delete: React.FC<DeleteProps> = ({ id, item, showText }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const onDelete = async () => {
@@ -35,7 +35,6 @@ const Delete: React.FC<DeleteProps> = ({ id , item}) => {
       if (res.ok) {
         setIsLoading(false);
         toast.success("Deleted successfully");
-        window.location.href = `/${item}`;
         router.push(`/api/${item}`)
       }
     } catch (error) {
@@ -46,9 +45,10 @@ const Delete: React.FC<DeleteProps> = ({ id , item}) => {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
-        <Button className="bg-red-500 text-white">
-          <Trash2 />
+      <AlertDialogTrigger asChild>
+        <Button variant="ghost" size="icon" className="flex text-red-600 focus:text-red-600">
+          <Trash2 className="text-red-600 mr-2 h-4 w-4" />
+          <span className={`${showText ? "" : "hidden"}`}>Delete</span>
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent className="bg-white">

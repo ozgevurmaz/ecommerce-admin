@@ -15,13 +15,22 @@ const ProductSchema = new mongoose.Schema({
     required: true,
   },
   category: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Category",
+  },
+  collections: [{ 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: "Collection" 
+  }],
+  tags: [String],
+  sizes: {
+    type: [String],
     required: true,
   },
-  collections: [{ type: mongoose.Schema.Types.ObjectId, ref: "Collection" }],
-  tags: [String],
-  sizes: [String],
-  colors: [String],
+  colors: {
+    type: [String],
+    required: true,
+  },
   price: {
     type: mongoose.Schema.Types.Decimal128,
     get: (v: mongoose.Schema.Types.Decimal128) => {
@@ -36,10 +45,24 @@ const ProductSchema = new mongoose.Schema({
     },
     required: true,
   },
+  prices: {
+    type: Map,
+    of: mongoose.Schema.Types.Decimal128,
+    default: {},
+    get: (v: Map<string, mongoose.Schema.Types.Decimal128>) => {
+      if (!v) return {};
+      const result: Record<string, number> = {};
+      v.forEach((value, key) => {
+        result[key] = parseFloat(value.toString());
+      });
+      return result;
+    }
+  },
   stock: {
-    type:[String],
+    type: Map,
+    of: Number,
     required: true,
-  },  
+  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -48,7 +71,7 @@ const ProductSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-}, {toJSON : {getters: true}});
+}, { toJSON: { getters: true } });
 
 export const Product = mongoose.models.Product || mongoose.model("Product", ProductSchema);
 

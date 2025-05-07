@@ -1,8 +1,10 @@
-import Collection from "@/lib/models/collections";
-import Product from "@/lib/models/products";
-import { connectToDB } from "@/lib/mongoDB";
-import { auth } from "@clerk/nextjs";
 import { NextRequest, NextResponse } from "next/server";
+import mongoose from "mongoose";
+import { auth } from "@clerk/nextjs";
+import { connectToDB } from "@/lib/mongoDB";
+import Product from "@/lib/models/products";
+import Collection from "@/lib/models/collections";
+import Category from "@/lib/models/categories";
 
 export const POST = async (
   req: NextRequest,
@@ -10,20 +12,14 @@ export const POST = async (
 ) => {
   try {
     const { userId } = auth();
-    if (!userId) {
-      return new NextResponse("Unautherized", { status: 401 });
-    }
+    if (!userId) return new NextResponse("Unauthorized", { status: 401 });
 
     await connectToDB();
 
-    let product = await Product.findById(params.productId);
+    const product = await Product.findById(params.productId);
+    if (!product) return new NextResponse("Product not found", { status: 404 });
 
-    if (!product) {
-      return new NextResponse("Product not found", {
-        status: 404,
-      });
-    }
-
+    const body = await req.json();
     const {
       title,
       description,
@@ -35,53 +31,53 @@ export const POST = async (
       sizes,
       price,
       expense,
-    } = await req.json();
+      stock,
+      prices,
+    } = body;
 
-    if (!title || !description || !media || !category || !price || !expense) {
-      return new NextResponse(
-        "Title, description, media, category, price, expense are required",
-        {
-          status: 400,
-        }
-      );
+    if (!title || !description || !media || !category || !price || !expense || !stock) {
+      return new NextResponse("Missing required fields", { status: 400 });
     }
 
     if (collections.length > 3) {
-      return new NextResponse("Too much collection selected", {
-        status: 400,
-      });
+      return new NextResponse("Too many collections selected", { status: 400 });
     }
 
-    const addedCollections = collections.filter(
-      (collectionId: string) => !product.collections.includes(collectionId)
-    );
-    // included in new data, but not included in the previous data
-
-    const removedCollections = product.collections.filter(
-      (collectionId: string) => !collections.includes(collectionId)
-    );
-    // included in previous data, but not included in the new data
-
     // Update collections
-    await Promise.all([
-      // Update added collections with this product
-      ...addedCollections.map((collectionId: string) =>
-        Collection.findByIdAndUpdate(collectionId, {
-          $push: { products: product._id },
-        })
-      ),
+    const currentCollections = product.collections.map((c: any) => c.toString());
+    const added = collections.filter((id: string) => !currentCollections.includes(id));
+    const removed = currentCollections.filter((id: string) => !collections.includes(id));
 
-      // Update removed collections without this product
-      ...removedCollections.map((collectionId: string) =>
-        Collection.findByIdAndUpdate(collectionId, {
-          $pull: { products: product._id },
-        })
+    await Promise.all([
+      added.map((id: string) =>
+        Collection.findByIdAndUpdate(id, { $push: { products: product._id } })
+      ),
+      removed.map((id: string) =>
+        Collection.findByIdAndUpdate(id, { $pull: { products: product._id } })
       ),
     ]);
+    
+    // Update category
+    if (category !== product.category) {
+      const removedCategory = product.category;
 
-    // Update product
+      await Category.findByIdAndUpdate(category, { $push: { products: product._id } });
+      await Category.findByIdAndUpdate(removedCategory, { $pull: { products: product._id } });
+    }
+
+
+    const formattedPrices: Record<string, mongoose.Types.Decimal128> = {};
+    for (const [key, val] of Object.entries(prices)) {
+      formattedPrices[key] = mongoose.Types.Decimal128.fromString((val as number).toString());
+    }
+
+    const formattedStock: Record<string, number> = {};
+    for (const [key, val] of Object.entries(stock)) {
+      formattedStock[key] = Number(val);
+    }
+
     const updatedProduct = await Product.findByIdAndUpdate(
-      product._id,
+      params.productId,
       {
         title,
         description,
@@ -89,19 +85,20 @@ export const POST = async (
         category,
         collections,
         tags,
-        sizes,
-        colors,
+        colors: colors.length ? colors : ["std"],
+        sizes: sizes.length ? sizes : ["std"],
         price,
         expense,
+        stock: formattedStock,
+        prices: formattedPrices,
       },
       { new: true }
-    ).populate({ path: "collections", model: Collection });
+    ).populate("collections");
 
-    await updatedProduct.save();
     return NextResponse.json(updatedProduct, { status: 200 });
   } catch (error) {
-    console.log("[products_POST]", error);
-    return new NextResponse("internal server error", { status: 500 });
+    console.error("[products_POST]", error);
+    return new NextResponse("Internal Server Error", { status: 500 });
   }
 };
 
@@ -112,29 +109,20 @@ export const GET = async (
   try {
     await connectToDB();
 
-    const product = await Product.findById(params.productId).populate({
-      path: "collections",
-      model: Collection,
-    });
-
-    if (!product) {
-      return new NextResponse(
-        JSON.stringify({ message: "Product not found" }),
-        { status: 404 }
-      );
-    }
+    const product = await Product.findById(params.productId).populate("collections");
+    if (!product) return new NextResponse("Product not found", { status: 404 });
 
     return new NextResponse(JSON.stringify(product), {
       status: 200,
       headers: {
         "Access-Control-Allow-Origin": process.env.ECOMMERCE_STORE_URL || "*",
         "Access-Control-Allow-Methods": "GET",
-        "Access-Control-Allow-Headers": "Content-Type, Cache-Control",
+        "Access-Control-Allow-Headers": "Content-Type",
       },
     });
   } catch (error) {
-    console.error("[productId_GET]", error);
-    return new NextResponse("internal server error", { status: 500 });
+    console.error("[product_GET]", error);
+    return new NextResponse("Internal Server Error", { status: 500 });
   }
 };
 
@@ -143,19 +131,29 @@ export const DELETE = async (
   { params }: { params: { productId: string } }
 ) => {
   try {
-    const userId = auth();
-    if (!userId) {
-      return new NextResponse("Unautherized", { status: 401 });
-    }
+    const { userId } = auth();
+    if (!userId) return new NextResponse("Unauthorized", { status: 401 });
 
     await connectToDB();
 
+    const product = await Product.findById(params.productId);
+    if (!product) return new NextResponse("Product not found", { status: 404 });
+
     await Product.findByIdAndDelete(params.productId);
+
+    await Promise.all(
+      product.collections.map((c: string) =>
+        Collection.findByIdAndUpdate(c, { $pull: { products: product._id } })
+      ),
+    );
+
+    Category.findByIdAndUpdate(product.category, { $pull: { products: product._id } })
+
     return new NextResponse(JSON.stringify({ message: "Product deleted" }), {
       status: 200,
     });
   } catch (error) {
-    console.error("[products_DELETE]", error);
-    return new NextResponse("internal server error", { status: 500 });
+    console.error("[product_DELETE]", error);
+    return new NextResponse("Internal Server Error", { status: 500 });
   }
 };

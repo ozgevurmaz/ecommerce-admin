@@ -1,4 +1,9 @@
 import mongoose from "mongoose";
+import "./models/categories";
+import "./models/products";
+import "./models/collections";
+import "./models/Customer";
+import "./models/Order";
 
 let isConnection: boolean = false;
 
@@ -10,11 +15,11 @@ export const connectToDB = async (): Promise<void> => {
   }
 
   try {
-    mongoose.connect(process.env.MONGODB_URL!, {
+    await mongoose.connect(process.env.MONGODB_URL!, {
       dbName: "stylie_admin",
     });
+
     isConnection = true;
-    console.log("✅ Connected to MongoDB");
 
   } catch (error) {
     console.log(error);

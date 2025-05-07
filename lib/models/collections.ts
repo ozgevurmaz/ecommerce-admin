@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const collectionSchema = new mongoose.Schema({
+export const collectionSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -17,16 +17,14 @@ const collectionSchema = new mongoose.Schema({
             ref: "Product",
         }
     ],
-    createdAt:{
+    createdAt: {
         type: Date,
         default: Date.now
     },
-    updateAt:{
+    updateAt: {
         type: Date,
         default: Date.now
     }
 })
 
-const Collection = mongoose.models.Collection || mongoose.model("Collection", collectionSchema);
-
-export default Collection;
+export default mongoose.models.Collection || mongoose.model("Collection", collectionSchema);

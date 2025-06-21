@@ -1,8 +1,5 @@
 import { DataTable } from "@/components/customUI/DataTable";
-<<<<<<< HEAD
-=======
 import PageHeader from "@/components/customUI/PageHeader";
->>>>>>> 9029510 (fixed things)
 import { columns } from "@/components/orders/OrderItemColumns";
 import { Separator } from "@/components/ui/separator";
 import React from "react";
@@ -16,13 +13,8 @@ const OrderDetails = async ({ params }: { params: { orderId: string } }) => {
     orderDetails.shippingAddress;
 
   return (
-<<<<<<< HEAD
-    <div className="p-10 space-y-2">
-      <h2 className="text-heading2-bold">Order Detail</h2>
-=======
     <div className="space-y-2">
        <PageHeader title="Order Details" />
->>>>>>> 9029510 (fixed things)
       <Separator className="my-4 bg-grey mt-4" />
       <p className="text-base-bold">
         Order Id: <span className="text-base-medium">{orderDetails._id}</span>

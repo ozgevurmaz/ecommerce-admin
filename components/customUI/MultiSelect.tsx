@@ -43,20 +43,6 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
     (collection) => !selected.includes(collection)
   );
 
-<<<<<<< HEAD
-
-
-  return (
-    <>
-      <Command className="overflow-visible">
-        <div className="flex gap-1 flex-wrap border rounded-md bg-white">
-          {selected.map((collection) => (
-            <Badge key={collection._id}>
-              {collection.title}
-              <button
-                type="button"
-                className="ml-1 hover:text-red-500"
-=======
   return (
     <div className="relative">
       <Command className="overflow-visible bg-transparent">
@@ -71,7 +57,6 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
               <button
                 type="button"
                 className="ml-2 hover:text-destructive transition-colors rounded-full hover:bg-destructive/10 p-0.5 border-none"
->>>>>>> 9029510 (fixed things)
                 onClick={() => onRemove(collection._id)}
               >
                 <X className="h-3 w-3" />
@@ -85,37 +70,6 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
             onValueChange={setInputValue}
             onBlur={() => setOpen(false)}
             onFocus={() => setOpen(true)}
-<<<<<<< HEAD
-          />
-        </div>
-
-        <div className="relative mt-2">
-          { open && (
-            <CommandList className="absolute z-10 w-full top-0 overflow-auto border rounded-md shadow-md">
-              {selectables.map((collection) => (
-                <CommandItem
-                  key={collection._id}
-                  onMouseDown={(e) => e.preventDefault()}
-                  onSelect={() => {
-                    onChange(collection._id);
-                    setInputValue("");
-                  }}
-                  className="cursor-pointer hover:bg-gray-100 "
-                  
-                >
-                  {collection.title}
-                </CommandItem>
-              ))}
-            </CommandList>
-          )}
-        </div>
-      </Command>
-    </>
-  );
-};
-
-export default MultiSelect;
-=======
             className="flex-1 bg-transparent p-0 border-none placeholder:text-muted-foreground focus:ring-0 focus:ring-offset-0"
           />
         </div>
@@ -147,4 +101,3 @@ export default MultiSelect;
 };
 
 export default MultiSelect;
->>>>>>> 9029510 (fixed things)

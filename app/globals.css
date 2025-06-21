@@ -8,9 +8,6 @@ body,
   height: 100%;
 }
 
-<<<<<<< HEAD
-=======
-
 @layer base {
 :root {
   --background: #f5f1e8;
@@ -56,28 +53,12 @@ body,
 }
 
 
->>>>>>> 9029510 (fixed things)
 @layer utilities {
 
   .flexCenter {
     @apply flex items-center justify-center;
   }
 
-<<<<<<< HEAD
-  .flexBetween{
-    @apply flex items-center justify-between;
-  }
-
-  .flexAround{
-    @apply flex items-center justify-around;
-  }
-
-  .flexEnd{
-    @apply flex items-center justify-end;
-  }
-
-  .flexStart{
-=======
   .flexBetween {
     @apply flex items-center justify-between;
   }
@@ -91,7 +72,6 @@ body,
   }
 
   .flexStart {
->>>>>>> 9029510 (fixed things)
     @apply flex items-center justify-start;
   }
 
@@ -100,9 +80,4 @@ body,
     -webkit-appearance: none;
     margin: 0;
   }
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> 9029510 (fixed things)
 }

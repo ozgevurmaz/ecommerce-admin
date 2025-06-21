@@ -12,24 +12,6 @@ const LeftSideBar = () => {
   const pathname = usePathname();
 
   return (
-<<<<<<< HEAD
-    <header className="h-screen fixed left-0 top-0 flexBetween flex-col bg-brown max-lg:hidden shadow-xl gap-10 p-10 z-20">
-      <Image src="/StylieLogo.png" alt="logo" width={150} height={70} />
-      <nav className="flex flex-col gap-6 xl:gap-12 ">
-        {navLinks.map((link) => (
-          <Link
-            href={link.url}
-            key={link.label}
-            className={`flexStart gap-4 text-body-medium ${
-              pathname === link.url ? "text-nude" : ""
-            }`}
-          >
-            {link.icon}
-            <p>{link.label}</p>
-          </Link>
-        ))}
-      </nav>
-=======
     <header className="h-screen fixed left-0 top-0 flexBetween flex-col bg-card max-lg:hidden shadow-xl gap-10 py-5 px-8 z-20">
       <Image src="/StylieLogo.png" alt="logo" width={150} height={70} />
       <nav className="flex flex-col gap-2 xl:gap-5 ">
@@ -59,7 +41,6 @@ const LeftSideBar = () => {
         ))}
       </nav>
       <div></div>
->>>>>>> 9029510 (fixed things)
     </header>
   );
 };

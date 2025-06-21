@@ -44,10 +44,7 @@ import ImageUpload from "@/components/customUI/ImageUpload";
 import Delete from "@/components/customUI/Delete";
 import { fetchData } from "@/lib/actions/fetchers";
 import Image from "next/image";
-<<<<<<< HEAD
-=======
 import PageHeader from "@/components/customUI/PageHeader";
->>>>>>> 9029510 (fixed things)
 
 
 // New/Edit category form type
@@ -246,11 +243,7 @@ const Categories = () => {
 
     if (showForm) {
         return (
-<<<<<<< HEAD
-            <div className="p-4 sm:p-6 md:p-10">
-=======
             <div className="p-4 sm:p-6 md:p-10 bg-background">
->>>>>>> 9029510 (fixed things)
                 <div className="mb-6">
                     <Button
                         variant="ghost"
@@ -260,46 +253,28 @@ const Categories = () => {
                         <ArrowLeft className="mr-2 h-4 w-4" />
                         Back to Categories
                     </Button>
-<<<<<<< HEAD
-                    <h2 className="text-2xl font-bold">{isEditMode ? "Edit Category" : "Add New Category"}</h2>
-=======
                     <h2 className="text-2xl font-bold text-foreground">{isEditMode ? "Edit Category" : "Add New Category"}</h2>
->>>>>>> 9029510 (fixed things)
                     <p className="text-muted-foreground text-sm mt-1">
                         {isEditMode ? "Update the details for this category" : "Create a new category for your products"}
                     </p>
                 </div>
 
-<<<<<<< HEAD
-                <Card className="p-6">
-                    <div className="space-y-6">
-                        <div className="space-y-2">
-                            <Label htmlFor="title">Category Name</Label>
-=======
                 <Card className="p-6 bg-card border-border">
                     <div className="space-y-6">
                         <div className="space-y-2">
                             <Label htmlFor="title" className="text-foreground">Category Name</Label>
->>>>>>> 9029510 (fixed things)
                             <Input
                                 id="title"
                                 name="title"
                                 placeholder="Enter category name"
                                 value={formState.title}
                                 onChange={handleInputChange}
-<<<<<<< HEAD
-=======
                                 className="bg-background border-border text-foreground"
->>>>>>> 9029510 (fixed things)
                             />
                         </div>
 
                         <div className="space-y-2">
-<<<<<<< HEAD
-                            <Label htmlFor="description">Description (Optional)</Label>
-=======
                             <Label htmlFor="description" className="text-foreground">Description (Optional)</Label>
->>>>>>> 9029510 (fixed things)
                             <Textarea
                                 id="description"
                                 name="description"
@@ -307,19 +282,12 @@ const Categories = () => {
                                 value={formState.description}
                                 onChange={handleInputChange}
                                 rows={4}
-<<<<<<< HEAD
-=======
                                 className="bg-background border-border text-foreground"
->>>>>>> 9029510 (fixed things)
                             />
                         </div>
 
                         <div className="space-y-2">
-<<<<<<< HEAD
-                            <Label htmlFor="image">Image</Label>
-=======
                             <Label htmlFor="image" className="text-foreground">Image</Label>
->>>>>>> 9029510 (fixed things)
                             <ImageUpload
                                 value={formState.image ? [formState.image] : []}
                                 onChange={(url) => handleImageChange(url)}
@@ -333,11 +301,7 @@ const Categories = () => {
                                 checked={formState.isActive}
                                 onCheckedChange={handleSwitchChange}
                             />
-<<<<<<< HEAD
-                            <Label htmlFor="isActive">Active</Label>
-=======
                             <Label htmlFor="isActive" className="text-foreground">Active</Label>
->>>>>>> 9029510 (fixed things)
                         </div>
 
                         <div className="flex items-center justify-end space-x-4 pt-4">
@@ -345,21 +309,14 @@ const Categories = () => {
                                 variant="outline"
                                 onClick={handleCancel}
                                 disabled={submitting}
-<<<<<<< HEAD
-=======
                                 className="border-border text-foreground hover:bg-accent"
->>>>>>> 9029510 (fixed things)
                             >
                                 Cancel
                             </Button>
                             <Button
                                 onClick={isEditMode ? updateCategory : createCategory}
                                 disabled={!formState.title.trim() || submitting}
-<<<<<<< HEAD
-                                className="bg-orange hover:bg-orange/90 text-white"
-=======
                                 className="bg-primary hover:bg-primary/90 text-primary-foreground"
->>>>>>> 9029510 (fixed things)
                             >
                                 {submitting ? (
                                     <>
@@ -381,38 +338,19 @@ const Categories = () => {
     }
 
     return (
-<<<<<<< HEAD
-        <div className="p-4 sm:p-6 md:p-10">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-                <div>
-                    <h2 className="text-2xl font-bold">Categories</h2>
-                    <p className="text-muted-foreground text-sm mt-1">
-                        Manage product categories
-                    </p>
-                </div>
-=======
         <div>
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
                 <PageHeader title="Categories" subtitle="Manage Product Categories"/>
->>>>>>> 9029510 (fixed things)
 
                 <div className="flex flex-col sm:flex-row w-full sm:w-auto gap-2">
                     <Input
                         placeholder="Search categories..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-<<<<<<< HEAD
-                        className="w-full sm:w-64"
-                    />
-
-                    <Button
-                        className="text-white bg-orange hover:bg-orange/90"
-=======
                     />
 
                     <Button
                         className="text-primary-foreground bg-primary hover:bg-primary/90"
->>>>>>> 9029510 (fixed things)
                         onClick={handleAdd}
                     >
                         <PlusCircle className="mr-2 h-4 w-4" />
@@ -421,21 +359,6 @@ const Categories = () => {
                 </div>
             </div>
 
-<<<<<<< HEAD
-            <Separator className="my-4" />
-
-            {filteredCategories.length > 0 ? (
-                <Card>
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead className="w-12"></TableHead>
-                                <TableHead>Name</TableHead>
-                                <TableHead className="hidden md:table-cell">Description</TableHead>
-                                <TableHead className="hidden md:table-cell">Products</TableHead>
-                                <TableHead>Status</TableHead>
-                                <TableHead className="text-right">Actions</TableHead>
-=======
             <Separator className="my-4 bg-border" />
 
             {filteredCategories.length > 0 ? (
@@ -449,22 +372,14 @@ const Categories = () => {
                                 <TableHead className="hidden md:table-cell text-foreground">Products</TableHead>
                                 <TableHead className="text-foreground">Status</TableHead>
                                 <TableHead className="text-right text-foreground">Actions</TableHead>
->>>>>>> 9029510 (fixed things)
                             </TableRow>
                         </TableHeader>
                         <TableBody>
                             {filteredCategories.map((category) => (
-<<<<<<< HEAD
-                                <TableRow key={category._id}>
-                                    <TableCell>
-                                        {category.image ? (
-                                            <div className="h-10 w-10 rounded-md overflow-hidden border">
-=======
                                 <TableRow key={category._id} className="border-border">
                                     <TableCell>
                                         {category.image ? (
                                             <div className="h-10 w-10 rounded-md overflow-hidden border border-border">
->>>>>>> 9029510 (fixed things)
                                                 <Image
                                                     src={category.image}
                                                     alt={category.title}
@@ -474,21 +389,12 @@ const Categories = () => {
                                                 />
                                             </div>
                                         ) : (
-<<<<<<< HEAD
-                                            <div className="h-10 w-10 rounded-md bg-gray-100 flex items-center justify-center">
-                                                <ImageIcon className="h-5 w-5 text-gray-400" />
-                                            </div>
-                                        )}
-                                    </TableCell>
-                                    <TableCell className="font-medium">{category.title}</TableCell>
-=======
                                             <div className="h-10 w-10 rounded-md bg-muted flex items-center justify-center">
                                                 <ImageIcon className="h-5 w-5 text-muted-foreground" />
                                             </div>
                                         )}
                                     </TableCell>
                                     <TableCell className="font-medium text-foreground">{category.title}</TableCell>
->>>>>>> 9029510 (fixed things)
                                     <TableCell className="hidden md:table-cell text-muted-foreground">
                                         {category.description ?
                                             (category.description.length > 60 ?
@@ -497,55 +403,19 @@ const Categories = () => {
                                             "-"}
                                     </TableCell>
                                     <TableCell className="hidden md:table-cell">
-<<<<<<< HEAD
-                                        <Badge variant="outline">
-=======
                                         <Badge variant="outline" className="border-border text-foreground">
->>>>>>> 9029510 (fixed things)
                                             {category.products.length || 0} products
                                         </Badge>
                                     </TableCell>
                                     <TableCell>
                                         <Badge
                                             variant={category.isActive ? "default" : "secondary"}
-<<<<<<< HEAD
-                                            className={`text-white ${category.isActive ? "bg-green-600" : "bg-gray-600"}`}
-=======
                                             className={`${category.isActive ? "bg-success text-success-foreground" : "bg-muted text-muted-foreground"}`}
->>>>>>> 9029510 (fixed things)
                                         >
                                             {category.isActive ? "Active" : "Inactive"}
                                         </Badge>
                                     </TableCell>
                                     <TableCell className="text-right">
-<<<<<<< HEAD
-
-                                        <Button onClick={() => handleEdit(category)}>
-                                            <Pencil className="mr-2 h-4 w-4" />
-                                            Edit
-                                        </Button>
-                                        <Button onClick={() => toggleCategoryStatus(category)}>
-                                            {category.isActive ? (
-                                                <>
-                                                    <EyeOff className="mr-2 h-4 w-4" />
-                                                    Disable
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <Eye className="mr-2 h-4 w-4" />
-                                                    Enable
-                                                </>
-                                            )}
-                                        </Button>
-                                        <Button
-                                            onClick={() => handleDelete(category)}
-                                            className="text-red-600 focus:text-red-600"
-                                        >
-                                            <Trash2 className="mr-2 h-4 w-4" />
-                                            Delete
-                                        </Button>
-
-=======
                                         <div className="flex justify-end gap-2">
                                             <Button 
                                                 variant="outline" 
@@ -584,7 +454,6 @@ const Categories = () => {
                                                 Delete
                                             </Button>
                                         </div>
->>>>>>> 9029510 (fixed things)
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -592,13 +461,8 @@ const Categories = () => {
                     </Table>
                 </Card>
             ) : (
-<<<<<<< HEAD
-                <div className="flex flex-col items-center justify-center p-10 text-center">
-                    <h3 className="text-lg font-medium mb-2">No categories found</h3>
-=======
                 <div className="flex flex-col items-center justify-center p-10 text-center bg-card border border-border rounded-lg">
                     <h3 className="text-lg font-medium mb-2 text-foreground">No categories found</h3>
->>>>>>> 9029510 (fixed things)
                     {searchTerm ? (
                         <p className="text-muted-foreground mb-4">
                             No categories match your search term
@@ -612,11 +476,7 @@ const Categories = () => {
                         <Button
                             variant="outline"
                             onClick={() => setSearchTerm("")}
-<<<<<<< HEAD
-                            className="mb-2"
-=======
                             className="mb-2 border-border text-foreground hover:bg-accent"
->>>>>>> 9029510 (fixed things)
                         >
                             <RefreshCw className="mr-2 h-4 w-4" />
                             Clear Search
@@ -627,17 +487,10 @@ const Categories = () => {
 
             {/* Delete Confirmation Dialog */}
             <Dialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
-<<<<<<< HEAD
-                <DialogContent className="bg-white">
-                    <DialogHeader>
-                        <DialogTitle>Delete Category</DialogTitle>
-                        <DialogDescription>
-=======
                 <DialogContent className="bg-popover border-border">
                     <DialogHeader>
                         <DialogTitle className="text-foreground">Delete Category</DialogTitle>
                         <DialogDescription className="text-muted-foreground">
->>>>>>> 9029510 (fixed things)
                             Are you sure you want to delete the category "{selectedCategory?.title}"? This action cannot be undone.
                         </DialogDescription>
                     </DialogHeader>
@@ -646,10 +499,7 @@ const Categories = () => {
                             variant="outline"
                             onClick={() => setShowDeleteDialog(false)}
                             disabled={submitting}
-<<<<<<< HEAD
-=======
                             className="border-border text-foreground hover:bg-accent"
->>>>>>> 9029510 (fixed things)
                         >
                             Cancel
                         </Button>
@@ -660,10 +510,6 @@ const Categories = () => {
                 </DialogContent>
             </Dialog>
         </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> 9029510 (fixed things)
     );
 };
 

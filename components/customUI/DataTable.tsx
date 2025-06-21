@@ -5,11 +5,7 @@ import {
   flexRender,
   ColumnFiltersState,
   getFilteredRowModel,
-<<<<<<< HEAD
-  getCoreRowModel,  getPaginationRowModel,
-=======
   getCoreRowModel, getPaginationRowModel,
->>>>>>> 9029510 (fixed things)
   useReactTable,
 } from "@tanstack/react-table";
 
@@ -43,11 +39,7 @@ export function DataTable<TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
     onColumnFiltersChange: setColumnFilters,
-<<<<<<< HEAD
-    getFilteredRowModel: getFilteredRowModel(),getPaginationRowModel: getPaginationRowModel(),
-=======
     getFilteredRowModel: getFilteredRowModel(), getPaginationRowModel: getPaginationRowModel(),
->>>>>>> 9029510 (fixed things)
     state: { columnFilters },
   });
 
@@ -59,17 +51,10 @@ export function DataTable<TData, TValue>({
         onChange={(event) =>
           table.getColumn(searchKey)?.setFilterValue(event.target.value)
         }
-<<<<<<< HEAD
-        className="max-w-sm mb-3"
-      />
-      <div className="rounded-md border">
-        <Table>
-=======
         className="max-w-sm mb-3 bg-input border border-border"
       />
       <div className="rounded-md border border-border overflow-hidden">
         <Table className="bg-card">
->>>>>>> 9029510 (fixed things)
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -79,15 +64,9 @@ export function DataTable<TData, TValue>({
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-<<<<<<< HEAD
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-=======
                           header.column.columnDef.header,
                           header.getContext()
                         )}
->>>>>>> 9029510 (fixed things)
                     </TableHead>
                   );
                 })}
@@ -124,17 +103,10 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-<<<<<<< HEAD
-      
-      <div className="flexEnd space-x-2 py-4">
-        <Button
-          variant="outline"
-=======
 
       <div className="flexEnd space-x-2 py-4">
         <Button
           variant="secondary"
->>>>>>> 9029510 (fixed things)
           size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
@@ -142,11 +114,7 @@ export function DataTable<TData, TValue>({
           Previous
         </Button>
         <Button
-<<<<<<< HEAD
-          variant="outline"
-=======
           variant="secondary"
->>>>>>> 9029510 (fixed things)
           size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}

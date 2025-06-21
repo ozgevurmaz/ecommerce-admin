@@ -2,10 +2,7 @@
 
 import { DataTable } from "@/components/customUI/DataTable";
 import Loader from "@/components/customUI/Loader";
-<<<<<<< HEAD
-=======
 import PageHeader from "@/components/customUI/PageHeader";
->>>>>>> 9029510 (fixed things)
 import { columns } from "@/components/orders/OrdersColumns";
 import { Separator } from "@/components/ui/separator";
 import { fetchData } from "@/lib/actions/fetchers";
@@ -28,15 +25,9 @@ const Orders = () => {
   return loading ? (
     <Loader />
   ) : (
-<<<<<<< HEAD
-    <div className="p-10">
-      <h2 className="text-heading2-bold">Orders</h2>
-      <Separator className="my-4 bg-grey mt-4" />
-=======
     <div>
       <PageHeader title="Orders" />
       <Separator className="my-4 bg-border mt-4" />
->>>>>>> 9029510 (fixed things)
 
       <DataTable data={orderDetails} columns={columns} searchKey="customer" />
     </div>

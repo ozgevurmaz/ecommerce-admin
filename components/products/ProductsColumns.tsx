@@ -24,11 +24,7 @@ export const columns: ColumnDef<ProductType>[] = [
               className="w-full h-full object-cover"
             />
           ) : (
-<<<<<<< HEAD
-            <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500">
-=======
             <div className="w-full h-full flex items-center justify-center">
->>>>>>> 9029510 (fixed things)
               No image
             </div>
           )}
@@ -42,11 +38,7 @@ export const columns: ColumnDef<ProductType>[] = [
     cell: ({ row }) => (
       <Link
         href={`/products/${row.original._id}`}
-<<<<<<< HEAD
-        className="font-medium hover:text-orange transition-colors"
-=======
         className="font-medium hover:text-primary transition-colors"
->>>>>>> 9029510 (fixed things)
       >
         {row.original.title}
       </Link>
@@ -61,11 +53,7 @@ export const columns: ColumnDef<ProductType>[] = [
           <Badge
             key={col._id}
             variant="outline"
-<<<<<<< HEAD
-            className="hover:bg-orange/10 hover:text-orange transition-colors max-w-max"
-=======
             className="hover:bg-orange/10 hover:text-primary transition-colors max-w-max"
->>>>>>> 9029510 (fixed things)
           >
             <Link href={`/collections/${col._id}`}>
               {col.title}
@@ -104,11 +92,7 @@ export const columns: ColumnDef<ProductType>[] = [
     accessorKey: "expense",
     header: "Cost (€)",
     cell: ({ row }) => (
-<<<<<<< HEAD
-      <span className="text-gray-600">
-=======
       <span>
->>>>>>> 9029510 (fixed things)
         {typeof row.original.expense === 'number'
           ? `€${row.original.expense.toFixed(2)}`
           : row.original.expense}
@@ -122,11 +106,7 @@ export const columns: ColumnDef<ProductType>[] = [
       <div className="flex items-center gap-2">
         <Link href={`/products/${row.original._id}`}>
           <Button variant="ghost" size="icon" className="h-8 w-8">
-<<<<<<< HEAD
-            <Edit className="h-4 w-4 text-blue-500" />
-=======
             <Edit className="h-4 w-4 text-primary" />
->>>>>>> 9029510 (fixed things)
           </Button>
         </Link>
         <Delete id={row.original._id} item="products" />

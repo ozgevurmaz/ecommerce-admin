@@ -1,5 +1,14 @@
+<<<<<<< HEAD
 import SalesChart from "@/components/dashboard/SalesChart";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+=======
+import PageHeader from "@/components/customUI/PageHeader";
+import { DashboardCard } from "@/components/dashboard/dashboardCard";
+import { SalesOverviewCard } from "@/components/dashboard/salesCardOverview";
+import SalesChart from "@/components/dashboard/SalesChart";
+import { TopProductsCard } from "@/components/dashboard/topProductsCard";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+>>>>>>> 9029510 (fixed things)
 import { Separator } from "@/components/ui/separator";
 import {
   getSalesPerMonth,
@@ -11,12 +20,16 @@ import {
   EuroIcon,
   ShoppingBag,
   UserRound,
+<<<<<<< HEAD
   TrendingUpIcon,
   StoreIcon,
   ArrowUpIcon,
   ArrowDownIcon
 } from "lucide-react";
 import Image from "next/image";
+=======
+} from "lucide-react";
+>>>>>>> 9029510 (fixed things)
 
 export default async function Dashboard() {
   const totalRevenue = await getTotalSales().then((data) => data.totalRevenue);
@@ -31,8 +44,12 @@ export default async function Dashboard() {
 
   const getSparkline = (color: string) => {
     return (
+<<<<<<< HEAD
       <div className="h-12 w-[80px] bg-gray-100 rounded-md flex items-end overflow-hidden">
 
+=======
+      <div className="h-12 w-[80px] bg-card rounded-md flex items-end overflow-hidden">
+>>>>>>> 9029510 (fixed things)
         <div className={`h-6 w-3 ${color} mx-[1px]`}></div>
         <div className={`h-8 w-3 ${color} mx-[1px]`}></div>
         <div className={`h-4 w-3 ${color} mx-[1px]`}></div>
@@ -44,6 +61,7 @@ export default async function Dashboard() {
   }
 
   return (
+<<<<<<< HEAD
     <main className="p-6 md:p-10 bg-gray-50 min-h-screen">
       <div className="flex justify-between items-center">
         <div>
@@ -221,5 +239,60 @@ export default async function Dashboard() {
         </Card>
       </div>
     </main>
+=======
+    <div className="bg-background min-h-screen">
+      <div className="flex flex-col md:flex-row justify-between items-center">
+        <PageHeader title="Dashboard Overview" subtitle="Welcome to your Stylie admin dashboard" />
+
+        <Select>
+          <SelectTrigger className="w-[160px] py-1 text-sm mt-1 border-border bg-input">
+            <SelectValue placeholder="Select a range" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="7days">Last 7 days</SelectItem>
+            <SelectItem value="30days">Last 30 days</SelectItem>
+            <SelectItem value="this-month">This month</SelectItem>
+            <SelectItem value="this-year">This year</SelectItem>
+          </SelectContent>
+        </Select>
+
+      </div>
+
+      <Separator className="my-6 bg-border" />
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+        <DashboardCard
+          title="Total Revenue"
+          value={totalRevenue}
+          growth={revenueGrowth}
+          icon={<EuroIcon className="h-5 w-5 text-chart-1" />}
+          chartBg="bg-chart-1"
+          chart={getSparkline("bg-chart-1")}
+        />
+        <DashboardCard
+          title="Total Orders"
+          value={totalOrders}
+          growth={ordersGrowth}
+          icon={<ShoppingBag className="h-5 w-5 text-chart-3" />}
+          chartBg="bg-chart-3"
+          chart={getSparkline("bg-chart-3")}
+        />
+        <DashboardCard
+          title="Total Customers"
+          value={totalCustomers}
+          growth={customersGrowth}
+          icon={<UserRound className="h-5 w-5 text-chart-5" />}
+          chartBg="bg-chart-5"
+          chart={getSparkline("bg-chart-5")}
+        />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mt-4 justify-center">
+        <SalesOverviewCard chart={<SalesChart data={graphData} />} />
+        <TopProductsCard products={topProducts} />
+      </div>
+
+    </div>
+>>>>>>> 9029510 (fixed things)
   );
 }

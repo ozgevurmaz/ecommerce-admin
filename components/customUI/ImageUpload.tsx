@@ -54,7 +54,11 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
                 key={url}
                 className={`h-72 w-full relative rounded-lg overflow-hidden group transition-all duration-300 hover:shadow-lg`}
               >
+<<<<<<< HEAD
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 z-10"></div>
+=======
+                <div className="absolute inset-0 bg-background/0 group-hover:bg-background/20 transition-all duration-300 z-10"></div>
+>>>>>>> 9029510 (fixed things)
                 <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
                   <Button
                     onClick={() => onRemove(url)}
@@ -81,19 +85,33 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
               <button
                 onClick={handlePrev}
                 disabled={startIndex === 0}
+<<<<<<< HEAD
                 className={`absolute left-0 top-1/2 -translate-y-1/2 -ml-4 bg-white rounded-full shadow-lg p-2 transition-all ${startIndex === 0 ? 'opacity-40 cursor-not-allowed' : 'opacity-80 hover:opacity-100'
                   }`}
               >
                 <ChevronLeft size={24} />
+=======
+                className={`absolute left-0 top-1/2 -translate-y-1/2 -ml-4 bg-card rounded-full shadow-lg p-2 transition-all ${startIndex === 0 ? 'opacity-40 cursor-not-allowed' : 'opacity-80 hover:opacity-100'
+                  }`}
+              >
+                <ChevronLeft size={24} className="text-foreground" />
+>>>>>>> 9029510 (fixed things)
               </button>
 
               <button
                 onClick={handleNext}
                 disabled={startIndex + maxVisibleImages >= value.length}
+<<<<<<< HEAD
                 className={`absolute right-0 top-1/2 -translate-y-1/2 -mr-4 bg-white rounded-full shadow-lg p-2 transition-all ${startIndex + maxVisibleImages >= value.length ? 'opacity-40 cursor-not-allowed' : 'opacity-80 hover:opacity-100'
                   }`}
               >
                 <ChevronRight size={24} />
+=======
+                className={`absolute right-0 top-1/2 -translate-y-1/2 -mr-4 bg-card rounded-full shadow-lg p-2 transition-all ${startIndex + maxVisibleImages >= value.length ? 'opacity-40 cursor-not-allowed' : 'opacity-80 hover:opacity-100'
+                  }`}
+              >
+                <ChevronRight size={24} className="text-foreground" />
+>>>>>>> 9029510 (fixed things)
               </button>
             </>
           )}
@@ -106,7 +124,11 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
             return (
               <Button
                 onClick={() => open()}
+<<<<<<< HEAD
                 className="bg-orange hover:bg-orange/90 text-white space-x-2 transition-all duration-300 shadow-md hover:shadow-lg"
+=======
+                className="bg-primary hover:bg-primary/90 text-primary-foreground space-x-2 transition-all duration-300 shadow-md hover:shadow-lg"
+>>>>>>> 9029510 (fixed things)
               >
                 <CloudUpload className="mr-2" size={18} />
                 <span>Upload Image</span>
@@ -117,11 +139,19 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
 
         {value.length > 0 && (
           <div className="flex items-center gap-2">
+<<<<<<< HEAD
             <p className="text-sm text-gray-500">
               {value.length} {value.length === 1 ? 'image' : 'images'} uploaded
             </p>
             {value.length > 3 && (
               <p className="text-sm text-gray-500">
+=======
+            <p className="text-sm text-muted-foreground">
+              {value.length} {value.length === 1 ? 'image' : 'images'} uploaded
+            </p>
+            {value.length > 3 && (
+              <p className="text-sm text-muted-foreground">
+>>>>>>> 9029510 (fixed things)
                 (showing {startIndex + 1}-{Math.min(startIndex + maxVisibleImages, value.length)} of {value.length})
               </p>
             )}
@@ -130,12 +160,21 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       </div>
 
       {value.length === 0 && (
+<<<<<<< HEAD
         <div className="mt-8 border-2 border-dashed border-gray-300 rounded-lg p-12 flex flex-col items-center justify-center text-center">
           <div className="bg-gray-100 p-3 rounded-full mb-4">
             <Plus className="h-6 w-6 text-gray-500" />
           </div>
           <h3 className="text-lg font-medium text-gray-900">No images</h3>
           <p className="mt-1 text-sm text-gray-500">Upload product images to showcase your items</p>
+=======
+        <div className="mt-8 border-2 border-dashed border-border rounded-lg p-12 flex flex-col items-center justify-center text-center">
+          <div className="bg-muted p-3 rounded-full mb-4">
+            <Plus className="h-6 w-6 text-muted-foreground" />
+          </div>
+          <h3 className="text-lg font-medium text-foreground">No images</h3>
+          <p className="mt-1 text-sm text-muted-foreground">Upload product images to showcase your items</p>
+>>>>>>> 9029510 (fixed things)
         </div>
       )}
     </div>

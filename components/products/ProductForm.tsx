@@ -28,6 +28,10 @@ import ImageUpload from "../customUI/ImageUpload";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 import React from "react";
 import { fetchData } from "@/lib/actions/fetchers";
+<<<<<<< HEAD
+=======
+import PageHeader from "../customUI/PageHeader";
+>>>>>>> 9029510 (fixed things)
 
 export const formSchema = z.object({
   title: z.string().min(2).max(20),
@@ -324,6 +328,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
   return isLoading ? (
     <Loader />
   ) : (
+<<<<<<< HEAD
     <div className="p-10">
       <div className="flexStart gap-12">
         <h2 className="text-heading2-bold">
@@ -337,6 +342,19 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <div className="flexAround gap-2">
             <div className="w-[60%]">
+=======
+    <div>
+      <div className="flexStart">
+        <PageHeader title={`${initialData ? "Edit " : "Create "}Product`} />
+        {initialData ? <Delete id={initialData._id} item="products" /> : ""}
+      </div>
+      <Separator className="bg-border mt-4 mb-7" />
+
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mx-3 mb-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
+            <div className="w-auto lg:col-span-2">
+>>>>>>> 9029510 (fixed things)
               <FormField
                 control={form.control}
                 name="title"
@@ -350,7 +368,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                         onKeyDown={handleKeyPress}
                       />
                     </FormControl>
+<<<<<<< HEAD
                     <FormMessage className="text-red-500" />
+=======
+                    <FormMessage className="text-destructive" />
+>>>>>>> 9029510 (fixed things)
                   </FormItem>
                 )}
               />
@@ -369,12 +391,20 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                         onKeyDown={handleKeyPress}
                       />
                     </FormControl>
+<<<<<<< HEAD
                     <FormMessage className="text-red-500" />
+=======
+                    <FormMessage className="text-destructive" />
+>>>>>>> 9029510 (fixed things)
                   </FormItem>
                 )}
               />
             </div>
+<<<<<<< HEAD
             <div className="w-[30%]">
+=======
+            <div>
+>>>>>>> 9029510 (fixed things)
               <FormField
                 control={form.control}
                 name="media"
@@ -394,7 +424,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                         }
                       />
                     </FormControl>
+<<<<<<< HEAD
                     <FormMessage className="text-red-500" />
+=======
+                    <FormMessage className="text-destructive" />
+>>>>>>> 9029510 (fixed things)
                   </FormItem>
                 )}
               />
@@ -416,7 +450,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                       onKeyDown={handleKeyPress}
                     />
                   </FormControl>
+<<<<<<< HEAD
                   <FormMessage className="text-red-500" />
+=======
+                  <FormMessage className="text-destructive" />
+>>>>>>> 9029510 (fixed things)
                 </FormItem>
               )}
             />
@@ -435,7 +473,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                       onKeyDown={handleKeyPress}
                     />
                   </FormControl>
+<<<<<<< HEAD
                   <FormMessage className="text-red-500" />
+=======
+                  <FormMessage className="text-destructive" />
+>>>>>>> 9029510 (fixed things)
                 </FormItem>
               )}
             />
@@ -449,7 +491,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                     <FormLabel>Category</FormLabel>
                     <FormControl>
                       <select
+<<<<<<< HEAD
                         className="w-full p-2 border rounded-md"
+=======
+                        className="w-full p-2 border border-border bg-input text-foreground rounded-md"
+>>>>>>> 9029510 (fixed things)
                         value={field.value}
                         onChange={field.onChange}
                       >
@@ -461,7 +507,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                         ))}
                       </select>
                     </FormControl>
+<<<<<<< HEAD
                     <FormMessage className="text-red-500" />
+=======
+                    <FormMessage className="text-destructive" />
+>>>>>>> 9029510 (fixed things)
                   </FormItem>
                 )}
               />
@@ -485,7 +535,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                       }
                     />
                   </FormControl>
+<<<<<<< HEAD
                   <FormMessage className="text-red-500" />
+=======
+                  <FormMessage className="text-destructive" />
+>>>>>>> 9029510 (fixed things)
                 </FormItem>
               )}
             />
@@ -512,7 +566,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                       }
                     />
                   </FormControl>
+<<<<<<< HEAD
                   <FormMessage className="text-red-500" />
+=======
+                  <FormMessage className="text-destructive" />
+>>>>>>> 9029510 (fixed things)
                 </FormItem>
               )}
             />
@@ -541,7 +599,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                         }
                       />
                     </FormControl>
+<<<<<<< HEAD
                     <FormMessage className="text-red-500" />
+=======
+                    <FormMessage className="text-destructive" />
+>>>>>>> 9029510 (fixed things)
                   </FormItem>
                 )}
               />
@@ -567,7 +629,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                       }
                     />
                   </FormControl>
+<<<<<<< HEAD
                   <FormMessage className="text-red-500" />
+=======
+                  <FormMessage className="text-destructive" />
+>>>>>>> 9029510 (fixed things)
                 </FormItem>
               )}
             />
@@ -592,14 +658,22 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                   <Button
                     type="button"
                     onClick={applyStockToAll}
+<<<<<<< HEAD
                     className="bg-blue-500 hover:bg-blue-600 text-white h-8 py-0"
+=======
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground h-8 py-0"
+>>>>>>> 9029510 (fixed things)
                   >
                     Apply
                   </Button>
                 </div>
                 <Button
                   type="button"
+<<<<<<< HEAD
                   className="bg-gray-200 text-gray-800 hover:bg-gray-300 h-8 py-0"
+=======
+                  className="bg-muted text-muted-foreground hover:bg-muted/80 h-8 py-0"
+>>>>>>> 9029510 (fixed things)
                   onClick={() => {
                     const newStock = { ...form.getValues("stock") };
                     form.watch("colors").forEach(color => {
@@ -613,7 +687,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                 >
                   Set All Stock to 0
                 </Button>
+<<<<<<< HEAD
                 <div className=" w-[1px] bg-gray-500/40 mx-4" />
+=======
+                <div className="w-[1px] bg-border mx-4" />
+>>>>>>> 9029510 (fixed things)
                 <div className="flex items-center gap-2">
                   <div className="font-medium">Set All Prices (€):</div>
                   <Input
@@ -628,14 +706,22 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                   <Button
                     type="button"
                     onClick={applyPriceToAll}
+<<<<<<< HEAD
                     className="bg-green-500 hover:bg-green-600 text-white h-8 py-0"
+=======
+                    className="bg-success hover:bg-success/90 text-success-foreground h-8 py-0"
+>>>>>>> 9029510 (fixed things)
                   >
                     Apply
                   </Button>
                 </div>
                 <Button
                   type="button"
+<<<<<<< HEAD
                   className="bg-gray-200 text-gray-800 hover:bg-gray-300 h-8 py-0"
+=======
+                  className="bg-muted text-muted-foreground hover:bg-muted/80 h-8 py-0"
+>>>>>>> 9029510 (fixed things)
                   onClick={() => {
                     const basePrice = form.getValues("price");
                     const newPrices = { ...form.getValues("prices") };
@@ -645,7 +731,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                       });
                     });
                     form.setValue("prices", newPrices);
+<<<<<<< HEAD
                     toast.success(`All prices reset to base price: $${basePrice.toFixed(2)}`);
+=======
+                    toast.success(`All prices reset to base price: €${basePrice.toFixed(2)}`);
+>>>>>>> 9029510 (fixed things)
                   }}
                 >
                   Reset All Prices to Base
@@ -653,7 +743,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
               </div>
 
               {/* Stock and Price Table with Ordered Sizes */}
+<<<<<<< HEAD
               <div className="bg-white p-2 rounded-lg border shadow-sm overflow-auto">
+=======
+              <div className="bg-background p-2 rounded-lg border border-border shadow-sm overflow-auto">
+>>>>>>> 9029510 (fixed things)
                 <Table className="border-collapse">
                   <TableHeader>
                     <TableRow className="h-8">
@@ -667,11 +761,19 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                   <TableBody className="max-w-max">
                     {form.watch("colors").map((color: string) => (
                       <React.Fragment key={color}>
+<<<<<<< HEAD
                         <TableRow className="h-10">
                           <TableCell rowSpan={2} className="font-medium border-r p-1.5">
                             {color}
                           </TableCell>
                           <TableCell className="bg-blue-50 font-medium p-1.5">
+=======
+                        <TableRow className="h-10 text-accent-foreground">
+                          <TableCell rowSpan={2} className="font-medium border-r border-border p-1.5">
+                            {color}
+                          </TableCell>
+                          <TableCell className="bg-accent text-accent-foreground font-medium p-1.5">
+>>>>>>> 9029510 (fixed things)
                             Stock
                           </TableCell>
                           {form.watch("sizes").sort((a, b) => {
@@ -684,7 +786,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                           }).map((size) => {
                             const stockKey = getStockKey(color, size);
                             return (
+<<<<<<< HEAD
                               <TableCell key={stockKey} className="text-center bg-blue-50 p-1 py-0.5">
+=======
+                              <TableCell key={stockKey} className="text-center bg-accent p-1 py-0.5">
+>>>>>>> 9029510 (fixed things)
                                 <FormField
                                   control={form.control}
                                   name={`stock.${stockKey}`}
@@ -710,8 +816,13 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                           })}
                         </TableRow>
 
+<<<<<<< HEAD
                         <TableRow className="border-b-2 border-gray-200 h-10">
                           <TableCell className="bg-green-50 font-medium p-1.5">
+=======
+                        <TableRow className="border-b-2 border-border h-10 text-secondary-foreground">
+                          <TableCell className="bg-secondary text-secondary-foreground font-medium p-1.5">
+>>>>>>> 9029510 (fixed things)
                             Price (€)
                           </TableCell>
                           {form.watch("sizes").sort((a, b) => {
@@ -724,7 +835,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                           }).map((size) => {
                             const priceKey = getStockKey(color, size);
                             return (
+<<<<<<< HEAD
                               <TableCell key={priceKey} className="text-center bg-green-50 p-1 py-0.5">
+=======
+                              <TableCell key={priceKey} className="text-center bg-secondary p-1 py-0.5">
+>>>>>>> 9029510 (fixed things)
                                 <FormField
                                   control={form.control}
                                   name={`prices.${priceKey}`}
@@ -758,10 +873,17 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
             </div>
           )}
 
+<<<<<<< HEAD
           <div className="flexStart gap-3 text-white w-min">
             <Button
               type="submit"
               className={`bg-grey ${isLoading ? "disabled" : ""}`}
+=======
+          <div className="flexStart gap-3 w-min">
+            <Button
+              type="submit"
+              disabled={isLoading}
+>>>>>>> 9029510 (fixed things)
             >
               Submit
             </Button>
@@ -769,7 +891,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
             <Button
               type="button"
               onClick={() => router.push("/products")}
+<<<<<<< HEAD
               className="bg-red-500"
+=======
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+>>>>>>> 9029510 (fixed things)
             >
               Discard
             </Button>

@@ -46,6 +46,7 @@ const Delete: React.FC<DeleteProps> = ({ id, item, showText }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
+<<<<<<< HEAD
         <Button variant="ghost" size="icon" className="flex text-red-600 focus:text-red-600">
           <Trash2 className="text-red-600 mr-2 h-4 w-4" />
           <span className={`${showText ? "" : "hidden"}`}>Delete</span>
@@ -54,6 +55,16 @@ const Delete: React.FC<DeleteProps> = ({ id, item, showText }) => {
       <AlertDialogContent className="bg-white">
         <AlertDialogHeader>
           <AlertDialogTitle className="text-red-500 ">
+=======
+        <Button variant="ghost" size="icon" className="flex text-destructive focus:text-destructive">
+          <Trash2 className="text-destructive h-4 w-4" />
+          <span className={`${showText ? "" : "hidden"}`}>Delete</span>
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent className="bg-background">
+        <AlertDialogHeader>
+          <AlertDialogTitle className="text-destructive ">
+>>>>>>> 9029510 (fixed things)
             Are you absolutely sure?
           </AlertDialogTitle>
           <AlertDialogDescription>
@@ -63,7 +74,11 @@ const Delete: React.FC<DeleteProps> = ({ id, item, showText }) => {
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
+<<<<<<< HEAD
             className="bg-red-500 text-white"
+=======
+            className="bg-destructive text-destructive-foreground"
+>>>>>>> 9029510 (fixed things)
             onClick={onDelete}
           >
             Continue

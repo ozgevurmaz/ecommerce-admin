@@ -43,6 +43,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
     (collection) => !selected.includes(collection)
   );
 
+<<<<<<< HEAD
 
 
   return (
@@ -55,6 +56,22 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
               <button
                 type="button"
                 className="ml-1 hover:text-red-500"
+=======
+  return (
+    <div className="relative">
+      <Command className="overflow-visible bg-transparent">
+        <div className="flex gap-2 flex-wrap p-3 border border-border rounded-md bg-input min-h-[40px] focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
+          {selected.map((collection) => (
+            <Badge 
+              key={collection._id}
+              variant="secondary"
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/80 px-2 py-1 text-sm"
+            >
+              {collection.title}
+              <button
+                type="button"
+                className="ml-2 hover:text-destructive transition-colors rounded-full hover:bg-destructive/10 p-0.5 border-none"
+>>>>>>> 9029510 (fixed things)
                 onClick={() => onRemove(collection._id)}
               >
                 <X className="h-3 w-3" />
@@ -68,6 +85,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
             onValueChange={setInputValue}
             onBlur={() => setOpen(false)}
             onFocus={() => setOpen(true)}
+<<<<<<< HEAD
           />
         </div>
 
@@ -97,3 +115,36 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 };
 
 export default MultiSelect;
+=======
+            className="flex-1 bg-transparent p-0 border-none placeholder:text-muted-foreground focus:ring-0 focus:ring-offset-0"
+          />
+        </div>
+
+        {open && selectables.length > 0 && (
+          <div className="relative mt-1">
+            <CommandList className="absolute z-50 w-full max-h-60 overflow-auto border border-border rounded-md shadow-lg bg-popover text-popover-foreground">
+              <CommandGroup>
+                {selectables.map((collection) => (
+                  <CommandItem
+                    key={collection._id}
+                    onMouseDown={(e) => e.preventDefault()}
+                    onSelect={() => {
+                      onChange(collection._id);
+                      setInputValue("");
+                    }}
+                    className="cursor-pointer px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground aria-selected:bg-accent aria-selected:text-accent-foreground transition-colors"
+                  >
+                    {collection.title}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </CommandList>
+          </div>
+        )}
+      </Command>
+    </div>
+  );
+};
+
+export default MultiSelect;
+>>>>>>> 9029510 (fixed things)

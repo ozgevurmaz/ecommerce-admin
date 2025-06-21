@@ -24,14 +24,24 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <ToastProvider />
+<<<<<<< HEAD
           <div className="flex min-h-screen bg-gray-50">
             <LeftSideBar />
             <div className="flex-1 lg:ml-64">
+=======
+          <div className="flex min-h-screen bg-background">
+            <LeftSideBar />
+            <div className="flex-1 lg:ml-52">
+>>>>>>> 9029510 (fixed things)
               {/* Top Bar */}
               <TopBar />
               
               {/* Main Content */}
+<<<<<<< HEAD
               <main className="pt-12">
+=======
+              <main className="pt-12 mx-4 mt-8 md:mx-6 lg:mr-8">
+>>>>>>> 9029510 (fixed things)
                 {children}
               </main>
             </div>

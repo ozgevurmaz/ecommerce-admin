@@ -23,6 +23,10 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { Separator } from "../ui/separator";
 import Delete from "../customUI/Delete";
+<<<<<<< HEAD
+=======
+import PageHeader from "../customUI/PageHeader";
+>>>>>>> 9029510 (fixed things)
 
 const formSchema = z.object({
   title: z.string().min(2).max(50),
@@ -42,10 +46,17 @@ const CollectionForm: React.FC<CollectionDataProps> = ({ initialData }) => {
     defaultValues: initialData
       ? initialData
       : {
+<<<<<<< HEAD
           title: "",
           description: "",
           image: "",
         },
+=======
+        title: "",
+        description: "",
+        image: "",
+      },
+>>>>>>> 9029510 (fixed things)
   });
 
   const handleKeyPress = (
@@ -82,11 +93,17 @@ const CollectionForm: React.FC<CollectionDataProps> = ({ initialData }) => {
   };
 
   return (
+<<<<<<< HEAD
     <div className="p-10">
       <div className="flexStart gap-12">
         <h2 className="text-heading2-bold">
           {initialData ? "Edit " : "Create "}Collection
         </h2>
+=======
+    <div>
+      <div className="flexStart">
+        <PageHeader title={`${initialData ? "Edit " : "Create "}Collection`} />
+>>>>>>> 9029510 (fixed things)
         {initialData ? <Delete id={initialData._id} item="collections" /> : ""}
       </div>
       <Separator className="my-4 bg-grey mt-4" />
@@ -99,7 +116,11 @@ const CollectionForm: React.FC<CollectionDataProps> = ({ initialData }) => {
               <FormItem>
                 <FormLabel>Title</FormLabel>
                 <FormControl>
+<<<<<<< HEAD
                   <Input placeholder="Title" {...field} onKeyDown={handleKeyPress}/>
+=======
+                  <Input placeholder="Title" {...field} onKeyDown={handleKeyPress} />
+>>>>>>> 9029510 (fixed things)
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -134,17 +155,29 @@ const CollectionForm: React.FC<CollectionDataProps> = ({ initialData }) => {
               </FormItem>
             )}
           />
+<<<<<<< HEAD
           <div className="flexStart gap-3 text-white w-min">
             <Button
               type="submit"
               className={`bg-grey ${isLoading ? "disabled" : ""}`}
               onClick={()=>{}}
+=======
+          <div className="flexStart gap-3 w-min">
+            <Button
+              type="submit"
+              disabled={isLoading}
+              onClick={() => { }}
+>>>>>>> 9029510 (fixed things)
             >
               Submit
             </Button>
             <Button
               type="button"
+<<<<<<< HEAD
               className="bg-red-500"
+=======
+              className="bg-destructive"
+>>>>>>> 9029510 (fixed things)
               onClick={() => router.push("/collections")}
             >
               Discard

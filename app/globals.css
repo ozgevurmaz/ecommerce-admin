@@ -8,12 +8,62 @@ body,
   height: 100%;
 }
 
+<<<<<<< HEAD
+=======
+
+@layer base {
+:root {
+  --background: #f5f1e8;
+  --foreground: #3f3732;       
+
+  --card: #fffbf6;
+  --card-foreground: #3f3732;
+
+  --popover: #ffffff;
+  --popover-foreground: #3f3732;
+
+  --primary: #a67c52;         
+  --primary-foreground: #ffffff;
+
+  --secondary: #f3e9d4;      
+  --secondary-foreground: #3f3f3f;
+
+  --muted: #f0e8dc;
+  --muted-foreground: #7a6e66;
+
+  --accent: #e5ddc3;       
+  --accent-foreground: #6a5e4f;
+
+  --success: #2c9c6d;
+  --success-foreground: #ffffff;
+
+  --destructive: #e53935;
+  --destructive-foreground: #ffffff;
+
+  --border: #cfbdac;
+  --input: #ffffff;
+  --ring: #a67c52;
+
+  --radius: 0.65rem;
+
+  --chart-1: #4d76cb;
+  --chart-2: #e88733;
+  --chart-3: #c54dce;
+  --chart-4: #f9e26d;
+  --chart-5: #179f7d;
+}
+
+}
+
+
+>>>>>>> 9029510 (fixed things)
 @layer utilities {
 
   .flexCenter {
     @apply flex items-center justify-center;
   }
 
+<<<<<<< HEAD
   .flexBetween{
     @apply flex items-center justify-between;
   }
@@ -27,6 +77,21 @@ body,
   }
 
   .flexStart{
+=======
+  .flexBetween {
+    @apply flex items-center justify-between;
+  }
+
+  .flexAround {
+    @apply flex items-center justify-around;
+  }
+
+  .flexEnd {
+    @apply flex items-center justify-end;
+  }
+
+  .flexStart {
+>>>>>>> 9029510 (fixed things)
     @apply flex items-center justify-start;
   }
 
@@ -35,5 +100,9 @@ body,
     -webkit-appearance: none;
     margin: 0;
   }
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 9029510 (fixed things)
 }

@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -24,15 +23,18 @@ import toast from "react-hot-toast";
 import { Separator } from "../ui/separator";
 import Delete from "../customUI/Delete";
 import PageHeader from "../customUI/PageHeader";
+import { SingleImageUpload } from "../customUI/SingleImageUpload";
 
 const formSchema = z.object({
   title: z.string().min(2).max(50),
   description: z.string().max(500).trim(),
   image: z.string(),
 });
+
 interface CollectionDataProps {
   initialData?: CollectionType | null;
 }
+
 const CollectionForm: React.FC<CollectionDataProps> = ({ initialData }) => {
   const router = useRouter();
 
@@ -71,7 +73,6 @@ const CollectionForm: React.FC<CollectionDataProps> = ({ initialData }) => {
       });
 
       if (res.ok) {
-        setIsLoading(false);
         toast.success(`Collection ${initialData ? "updated" : "created."}`);
         window.location.href = "/collections";
         router.push("/collections");
@@ -79,6 +80,8 @@ const CollectionForm: React.FC<CollectionDataProps> = ({ initialData }) => {
     } catch (err) {
       console.log("[CollectionForm]", err);
       toast.error("Something went wrong");
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -118,28 +121,20 @@ const CollectionForm: React.FC<CollectionDataProps> = ({ initialData }) => {
             )}
           />
           <FormField
-            control={form.control}
             name="image"
             render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <ImageUpload
-                    value={field.value ? [field.value] : []}
-                    onChange={(url) => field.onChange(url)}
-                    onRemove={() => field.onChange("")}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+              <SingleImageUpload
+                value={field.value ? field.value : ""}
+                onChange={(url) => field.onChange(url)}
+                onRemove={() => field.onChange("")}
+              />
             )}
           />
           <div className="flexStart gap-3 w-min">
             <Button
               type="submit"
-              disabled={isLoading}
-              onClick={() => { }}
             >
-              Submit
+              {initialData ? "Save" : "Submit"}
             </Button>
             <Button
               type="button"
